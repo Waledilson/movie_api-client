@@ -11,7 +11,7 @@ export class MainView extends React.Component {
             movies: [
                 { _id: 1, Title: 'Inceptection', Description: 'Descrip....', ImagePath: '....' },
                 { _id: 2, Title: 'The Shawshank Redemption', Description: 'descrip....', ImagePath: '....' },
-                { _id: 3, Title: 'Gladiator', Description: 'descript....', ImagePath: '....' }
+                { _id: 3, Title: 'Gladiator', Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.', ImagePath: 'https://www.lavanguardia.com/peliculas-series/images/movie/poster/2000/5/w1280/90QFOG5zSN4cbrIVs4DL4ePAuA5.jpg' }
             ],
             selectedMovie: null
         };
