@@ -22918,8 +22918,8 @@ class MainView extends _reactDefault.default.Component {
                 {
                     _id: 3,
                     Title: 'Gladiator',
-                    Description: 'descript....',
-                    ImagePath: '....'
+                    Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
+                    ImagePath: 'https://www.lavanguardia.com/peliculas-series/images/movie/poster/2000/5/w1280/90QFOG5zSN4cbrIVs4DL4ePAuA5.jpg'
                 }
             ],
             selectedMovie: null
