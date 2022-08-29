@@ -44,7 +44,10 @@ export class LoginView extends React.Component {
 */
 
 import React, { useState } from 'react';
+<<<<<<< Updated upstream
 import PropTypes from 'prop-types';
+=======
+>>>>>>> Stashed changes
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
