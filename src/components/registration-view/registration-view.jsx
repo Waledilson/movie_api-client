@@ -7,7 +7,7 @@ export function RegistrationView(props) {
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleRegistration = (e) => {
         e.preventDefault();
         console.log(username, password);
     };
@@ -21,7 +21,7 @@ export function RegistrationView(props) {
                 Password:
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
-            <button type="submit" onClick={handleSubmit}>Register</button>
+            <button type="submit" onClick={handleRegistration}>Register</button>
         </form>
     );
     RegistrationView.propTypes = {
