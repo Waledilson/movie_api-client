@@ -59,6 +59,7 @@ export class MainView extends React.Component {
                         }} />
                     ))
                 }
+                <button class="registerButon" type="button">Register Here!</button>
             </div>
         );
     }
