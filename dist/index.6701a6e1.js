@@ -27074,7 +27074,7 @@ function LoginView(props) {
                     /*#__PURE__*/ _jsxRuntime.jsx("input", {
                         type: "text",
                         value: username,
-                        onChange: (e)=>setPassword(e.target.value)
+                        onChange: (e)=>setUsername(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
