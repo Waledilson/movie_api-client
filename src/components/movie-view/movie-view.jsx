@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export class MovieView extends React.Component {
 
@@ -24,4 +25,14 @@ export class MovieView extends React.Component {
             </div>
         );
     }
+}
+MovieView.PropTypes = {
+    movie: PropTypes.shape({
+        ImagePath: PropTypes.string,
+        Title: PropTypes.string.isRequired,
+        Description: PropTypes.string,
+        Genre: PropTypes.string,
+        Director: PropTypes.string,
+        Featured: PropTypes.bool
+    }).isRequired
 }
