@@ -18,11 +18,6 @@ export class MainView extends React.Component {
             registered: null
         }
     }
-    onRegistered(registered) {
-        this.setState({
-            registered
-        });
-    }
 
     componentDidMount() {
         axios.get('https://intense-shore-03094.herokuapp.com/movies')
@@ -46,6 +41,12 @@ export class MainView extends React.Component {
     onLoggedIn(user) {
         this.setState({
             user
+        });
+    }
+
+    onRegistered(registered) {
+        this.setState({
+            registered
         });
     }
 
