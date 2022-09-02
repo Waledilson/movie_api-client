@@ -3,6 +3,7 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -13,9 +14,16 @@ export class MainView extends React.Component {
         this.state = {
             movies: [],
             selectedMovie: null,
-            user: null
+            user: null,
+            registered: null
         }
     }
+    onRegistered(registered) {
+        this.setState({
+            registered
+        });
+    }
+
     componentDidMount() {
         axios.get('https://intense-shore-03094.herokuapp.com/movies')
             .then(response => {
@@ -42,7 +50,9 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, selectedMovie, user, registered } = this.state;
+
+        if (!registered) return <RegistrationView onLoggedIn={registered => this.onRegistered(registered)} />;
 
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
