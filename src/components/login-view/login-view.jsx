@@ -32,9 +32,9 @@ export function LoginView(props) {
 }
 LoginView.propTypes = {
     user: PropTypes.exact({
-        Username: PropTypes.string.isRequired,
-        Password: PropTypes.string.isRequired
-    }).isRequired,
-    onClick: PropTypes.func.isRequired
+        Username: PropTypes.string,
+        Password: PropTypes.string
+    }),
+    onLoggedIn: PropTypes.func.isRequired
 
 }
