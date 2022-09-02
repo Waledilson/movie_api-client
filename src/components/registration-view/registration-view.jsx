@@ -11,7 +11,7 @@ export function RegistrationView(props) {
 
     const handleRegistration = (e) => {
         e.preventDefault();
-        console.log(username, password);
+        console.log(username, password, email, password);
         props.onRegistered(registered);
     };
     return (
@@ -36,22 +36,3 @@ export function RegistrationView(props) {
         </Form >
     );
 }
-
-RegistrationView.propTypes = {
-    resgistered: PropTypes.exact({
-        Username: PropTypes.string.isRequired,
-        Password: PropTypes.string.isRequired,
-    }).isRequired
-
-}
-
-/*RegistrationView.propTypes = {
-    resgistered: PropTypes.exact({
-        Username: PropTypes.string.isRequired,
-        Password: PropTypes.string.isRequired,
-        Email: PropTypes.string.isRequired,
-        Birthday: PropTypes.number.isRequired
-    }).isRequired
-
-}
-*/
