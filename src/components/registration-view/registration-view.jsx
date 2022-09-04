@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 
 export function RegistrationView(props) {
