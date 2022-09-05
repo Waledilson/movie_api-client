@@ -3,8 +3,8 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -70,7 +70,7 @@ export class MainView extends React.Component {
                             }} />
                         </Col>)
                     : movies.map(movie => (
-                        <Col md={3}>
+                        <Col md={3} sm={2}>
                             <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => {
                                 this.setSelectedMovie(newSelectedMovie);
                             }} />
