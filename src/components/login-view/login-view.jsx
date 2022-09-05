@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
+import Button from 'react-bootstrap';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -31,9 +32,9 @@ export function LoginView(props) {
 }
 LoginView.propTypes = {
     user: PropTypes.exact({
-        Username: PropTypes.string.isRequired,
-        Password: PropTypes.string.isRequired
-    }).isRequired,
-    onClick: PropTypes.func.isRequired
+        Username: PropTypes.string,
+        Password: PropTypes.string
+    }),
+    onLoggedIn: PropTypes.func.isRequired
 
 }
