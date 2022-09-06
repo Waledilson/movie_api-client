@@ -1,1 +1,1 @@
-{"mappings":"AAEA;EACI,OAHI","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\n\n.my-flix {\n    color: $color;\n}"],"names":[],"version":3,"file":"index.caa67093.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAMA;EACI,OAPK","sources":["src/index.scss"],"sourcesContent":["$color1: #2C2C2C;\n$color2: #F59800;\n$color3: #454452;\n\n$font-stack: Trebuchet MS, sans-serif;\n\n.my-flix {\n    color: $color1;\n}"],"names":[],"version":3,"file":"index.caa67093.css.map","sourceRoot":"/__parcel_source_root/"}
