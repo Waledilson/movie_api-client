@@ -11,7 +11,7 @@ export function RegistrationView(props) {
     const handleRegistration = (e) => {
         e.preventDefault();
         console.log(username, password, email, password);
-        props.onRegistered(registered);
+        props.onRegistered(username);
     };
     return (
         <Container>
