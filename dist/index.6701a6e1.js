@@ -22984,9 +22984,6 @@ class MainView extends _reactDefault.default.Component {
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
-                lg: 10,
-                md: 8,
-                sm: 5,
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 67
