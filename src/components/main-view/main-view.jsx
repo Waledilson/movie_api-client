@@ -32,9 +32,9 @@ export class MainView extends React.Component {
     }
 
 
-    setSelectedMovie(newSelectedMovie) {
+    setSelectedMovie(movie) {
         this.setState({
-            selectedMovie: newSelectedMovie
+            selectedMovie: movie
         });
     }
 
@@ -53,7 +53,7 @@ export class MainView extends React.Component {
     render() {
         const { movies, selectedMovie, user, registered } = this.state;
 
-        if (!registered) return <RegistrationView onLoggedIn={registered => this.onRegistered(registered)} />;
+        if (!registered) return <RegistrationView onRegistered={registered => this.onRegistered(registered)} />;
 
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
@@ -70,8 +70,8 @@ export class MainView extends React.Component {
                             }} />
                         </Col>)
                     : movies.map(movie => (
-                        <Col md={3} sm={2}>
-                            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => {
+                        <Col lg={3} md={4} sm={6}>
+                            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => {
                                 this.setSelectedMovie(newSelectedMovie);
                             }} />
                         </Col>
@@ -83,3 +83,10 @@ export class MainView extends React.Component {
 }
 
 export default MainView;
+
+
+
+/*
+run the app.nothing happens when i try to open a movie.
+try the "newselectedmovie" "selectedmovie" "movie" combinations
+*/
