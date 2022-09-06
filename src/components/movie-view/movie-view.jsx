@@ -8,7 +8,7 @@ export class MovieView extends React.Component {
         const { movie, onBackClick } = this.props;
 
         return (
-            <Container className="movieViewContainer">
+            <Container className="movieViewContainer" >
                 <Row className="movie-view">
                     <Col className="movie-poster">
                         <img width={250} height={350} src={movie.ImagePath} crossOrigin="true" />
