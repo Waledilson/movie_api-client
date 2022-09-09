@@ -3,10 +3,13 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import './main-view.scss';
+
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+
 
 export class MainView extends React.Component {
     constructor() {
@@ -61,7 +64,7 @@ export class MainView extends React.Component {
             return <div className="main-view" />;
 
         return (
-            <Row className="main-view justify-content-md-center">
+            <Row className="main-view justify-content-md-center bg-dark">
                 {selectedMovie
                     ? (
                         <Col>
@@ -70,8 +73,8 @@ export class MainView extends React.Component {
                             }} />
                         </Col>)
                     : movies.map(movie => (
-                        <Col lg={3} md={4} sm={6}>
-                            <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => {
+                        <Col lg={3} md={4} sm={6} key={movie._id}>
+                            <MovieCard movie={movie} onMovieClick={(newSelectedMovie) => {
                                 this.setSelectedMovie(newSelectedMovie);
                             }} />
                         </Col>
@@ -83,10 +86,3 @@ export class MainView extends React.Component {
 }
 
 export default MainView;
-
-
-
-/*
-run the app.nothing happens when i try to open a movie.
-try the "newselectedmovie" "selectedmovie" "movie" combinations
-*/
