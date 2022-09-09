@@ -2,8 +2,8 @@ $color1: #2C2C2C;
 $color2: #F59800;
 $color3: #454452;
 
-$font-stack: Trebuchet MS, sans-serif;
+body {
+    background-color: $color1;
+    font-family: 'Trebuchet MS', sans-serif;
 
-.my-flix {
-    color: $color1;
 }
