@@ -22,6 +22,21 @@ export class MainView extends React.Component {
         }
     }
 
+    getMovies(token) {
+        axios.get('https://intense-shore-03094.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                //assign the result to the state
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     componentDidMount() {
         axios.get('https://intense-shore-03094.herokuapp.com/movies')
             .then(response => {
@@ -41,10 +56,14 @@ export class MainView extends React.Component {
         });
     }
 
-    onLoggedIn(user) {
+    onLoggedIn(authData) {
+        console.log(authData);
         this.setState({
-            user
+            user: authData.user.Username
         });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.Username);
+        this.getMovies(authData.token);
     }
 
     onRegistered(registered) {
@@ -56,9 +75,9 @@ export class MainView extends React.Component {
     render() {
         const { movies, selectedMovie, user, registered } = this.state;
 
-        if (!registered) return <RegistrationView onRegistered={registered => this.onRegistered(registered)} />;
-
         if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+
+        if (!registered) return <RegistrationView onRegistered={registered => this.onRegistered(registered)} />;
 
         if (movies.length === 0)
             return <div className="main-view" />;
