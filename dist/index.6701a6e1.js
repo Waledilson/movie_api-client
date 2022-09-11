@@ -36247,7 +36247,6 @@ function LoginView(props) {
     const [password, setPassword] = _react.useState('');
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(username, password);
         /* Send a request to the server for authentication */ _axiosDefault.default.post('https://intense-shore-03094.herokuapp.com/login', {
             Username: username,
             Password: password
@@ -36262,7 +36261,7 @@ function LoginView(props) {
         className: "bg-dark text-white",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 30
+            lineNumber: 29
         },
         __self: this,
         children: [
@@ -36270,7 +36269,7 @@ function LoginView(props) {
                 controlId: "formUsername",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 31
+                    lineNumber: 30
                 },
                 __self: this,
                 children: [
@@ -36278,7 +36277,7 @@ function LoginView(props) {
                         className: "text-warning",
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 32
+                            lineNumber: 31
                         },
                         __self: this,
                         children: "Username:"
@@ -36289,7 +36288,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 33
+                            lineNumber: 32
                         },
                         __self: this
                     })
@@ -36299,7 +36298,7 @@ function LoginView(props) {
                 controlId: "formPassword",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 36
+                    lineNumber: 35
                 },
                 __self: this,
                 children: [
@@ -36307,7 +36306,7 @@ function LoginView(props) {
                         className: "text-warning",
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 37
+                            lineNumber: 36
                         },
                         __self: this,
                         children: "Password:"
@@ -36318,7 +36317,7 @@ function LoginView(props) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 38
+                            lineNumber: 37
                         },
                         __self: this
                     })
@@ -36330,7 +36329,7 @@ function LoginView(props) {
                 onClick: handleSubmit,
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 40
+                    lineNumber: 39
                 },
                 __self: this,
                 children: "Submit"
