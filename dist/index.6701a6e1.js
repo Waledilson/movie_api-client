@@ -36358,7 +36358,7 @@ function LoginView(props) {
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
 LoginView.propTypes = {
-    user: _propTypesDefault.default.exact({
+    user: _propTypesDefault.default.shape({
         Username: _propTypesDefault.default.string,
         Password: _propTypesDefault.default.string
     }),

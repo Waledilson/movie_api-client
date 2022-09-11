@@ -14,7 +14,7 @@ export function LoginView(props) {
         /* Send a request to the server for authentication */
         axios.post('https://intense-shore-03094.herokuapp.com/login', {
             Username: username,
-            Password: password
+            Password: password,
         })
             .then(response => {
                 const data = response.data;
@@ -43,10 +43,9 @@ export function LoginView(props) {
     );
 }
 LoginView.propTypes = {
-    user: PropTypes.exact({
+    user: PropTypes.shape({
         Username: PropTypes.string,
         Password: PropTypes.string
     }),
     onLoggedIn: PropTypes.func.isRequired
-
 }
