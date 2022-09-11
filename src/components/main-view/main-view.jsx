@@ -22,6 +22,16 @@ export class MainView extends React.Component {
         }
     }
 
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+    }
+
     getMovies(token) {
         axios.get('https://intense-shore-03094.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
@@ -36,19 +46,6 @@ export class MainView extends React.Component {
                 console.log(error);
             });
     }
-
-    componentDidMount() {
-        axios.get('https://intense-shore-03094.herokuapp.com/movies')
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
-
 
     setSelectedMovie(movie) {
         this.setState({
@@ -66,6 +63,14 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        this.setState({
+            user: null
+        });
+    }
+
     onRegistered(registered) {
         this.setState({
             registered
@@ -81,6 +86,8 @@ export class MainView extends React.Component {
 
         if (movies.length === 0)
             return <div className="main-view" />;
+
+        <button onClick={() => { this.onLoggedOut() }}>Logout</button>
 
         return (
             <Row className="main-view justify-content-md-center bg-dark">
