@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import React from 'react';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
@@ -12,8 +13,20 @@ export function RegistrationView(props) {
 
     const handleRegistration = (e) => {
         e.preventDefault();
-        console.log(username, password, email, password);
-        props.onRegistered(username);
+        axios.post('https://intense-shore-03094.herokuapp.com/login', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        })
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                window.open('/', '_self');
+            })
+            .catch(e => {
+                console.log('eror registering user')
+            });
     };
     return (
         <Container>
