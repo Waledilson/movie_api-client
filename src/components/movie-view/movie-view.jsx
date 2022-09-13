@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Link } from 'react-bootstrap';
 
 import './movie-view.scss';
 
@@ -31,19 +31,23 @@ export class MovieView extends React.Component {
                 <Row>
                     <Col className="movie-genre">
                         <span className="label text-warning">Genre: </span>
-                        <span className="value text-white">{movie.Genre.Name}</span>
+                        <Link to={`/genres/${movie.Genre.Name}`}>
+                            <Button variant="link"></Button>
+                        </Link>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="movie-director">
                         <span className="label text-warning">Directed by: </span>
-                        <span className="value text-white">{movie.Director.Name}</span>
+                        <Link to={`/directors/${movie.Director.Name}`}>
+                            <Button variant="link"></Button>
+                        </Link>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="movie-featured">
                         <span className="label text-warning">Featured: </span>
-                        <span className="value text-white">{movie.Featured}</span>
+                        <span className="value text-white">{movie.Featured.bool}</span>
                     </Col>
                 </Row>
                 <Button onClick={() => {
@@ -57,10 +61,9 @@ MovieView.propTypes = {
     movie: PropTypes.shape({
         ImagePath: PropTypes.string,
         Title: PropTypes.string.isRequired,
-        Description: PropTypes.string,
-        Genre: PropTypes.object,
-        Director: PropTypes.object,
-        Featured: PropTypes.bool
-    }),
-    onBackClick: PropTypes.func.isRequired
+        Description: PropTypes.string
+        // Genre: PropTypes.object,
+        // Director: PropTypes.object,
+        // Featured: PropTypes.bool
+    }).isRequired
 };
