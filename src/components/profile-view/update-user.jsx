@@ -1,6 +1,8 @@
 import React from 'react';
 
 function UpdateUser(handleSubmit, handleUpdate) {
+
+
     return (
         <form className='profile-form' onSubmit={(e) => handleSubmit(e)}>
             <h2>Want to change some info??</h2>
@@ -11,6 +13,7 @@ function UpdateUser(handleSubmit, handleUpdate) {
             <label>Email address</label>
             <input type='email' name='email' defaultValue={user.Email} onChange={e => handleUpdate(e.target.value)} />
             <button variant='primary' type='submit'>Update</button>
+
         </form>
     )
 }
