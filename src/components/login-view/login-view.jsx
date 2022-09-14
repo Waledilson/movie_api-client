@@ -9,8 +9,34 @@ export function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const [usernameErr, setUsernameErr] = useState('');
+    const [passwordErr, setPasswordErr] = useState('');
+
+    const validate = () => {
+        let isReq = true;
+        if (!username) {
+            setUsernameErr('Username Requiured');
+            isReq = false;
+        } else if (username.length < 5) {
+            setUsernameErr('Username must be 5 characters long');
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr('Password Required');
+            isReq = false;
+        } else if (password.length < 6) {
+            setPassword('Password must be 6 characters long');
+            isReq = false;
+        }
+        return isReq;
+    }
+};
+
+
+const handleSubmit = (e) => {
+    e.preventDefault();
+    const isReq = validate();
+    if (isReq) {
         /* Send a request to the server for authentication */
         axios.post('https://intense-shore-03094.herokuapp.com/login', {
             Username: username,
@@ -23,25 +49,32 @@ export function LoginView(props) {
             .catch(e => {
                 console.log('no such user')
             });
-    };
+    }
+};
 
-    return (
-        <Form className="bg-dark text-white">
-            <Form.Group controlId="formUsername">
-                <Form.Label className="text-warning">Username:</Form.Label>
-                <Form.Control type="text" onChange={e => setUsername(e.target.value)} />
-            </Form.Group>
+return (
+    <Form className="bg-dark text-white">
+        <Form.Group controlId="formUsername">
+            <Form.Label className="text-warning">Username:</Form.Label>
+            <Form.Control placeholder="Enter username" value={username} type="text" onChange={e => setUsername(e.target.value)} />
+            { /*  */}
+            {usernameErr && <p>{usernameErr}</p>}
+        </Form.Group>
 
-            <Form.Group controlId="formPassword">
-                <Form.Label className="text-warning">Password:</Form.Label>
-                <Form.Control type="password" onChange={e => setPassword(e.target.value)} />
-            </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
-                Submit
-            </Button>
-        </Form>
-    );
-}
+        <Form.Group controlId="formPassword">
+            <Form.Label className="text-warning">Password:</Form.Label>
+            <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+            {/*  */}
+            {passwordErr && <p>{passwordErr}</p>}
+        </Form.Group>
+        <Button variant="primary" type="submit" onClick={handleSubmit}>
+            Submit
+        </Button>
+    </Form>
+)
+
+
+
 LoginView.propTypes = {
     user: PropTypes.shape({
         Username: PropTypes.string,
