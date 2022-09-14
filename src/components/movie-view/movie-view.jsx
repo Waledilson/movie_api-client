@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row, Col, Button, Link } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 import './movie-view.scss';
 
@@ -32,7 +33,7 @@ export class MovieView extends React.Component {
                     <Col className="movie-genre">
                         <span className="label text-warning">Genre: </span>
                         <Link to={`/genres/${movie.Genre.Name}`}>
-                            <Button variant="link"></Button>
+                            <span className="director-link link text-light">{movie.Genre.Name}</span>
                         </Link>
                     </Col>
                 </Row>
@@ -40,7 +41,7 @@ export class MovieView extends React.Component {
                     <Col className="movie-director">
                         <span className="label text-warning">Directed by: </span>
                         <Link to={`/directors/${movie.Director.Name}`}>
-                            <Button variant="link"></Button>
+                            <span className="director-link link text-light">{movie.Director.Name}</span>
                         </Link>
                     </Col>
                 </Row>
@@ -51,7 +52,7 @@ export class MovieView extends React.Component {
                     </Col>
                 </Row>
                 <Button onClick={() => {
-                    onBackClick(null);
+                    onBackClick();
                 }}>Back</Button>
             </Container>
         );
