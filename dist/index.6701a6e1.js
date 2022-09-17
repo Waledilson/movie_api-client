@@ -42643,16 +42643,7 @@ function FavoriteMovies({ movies , handleFavorite , favoriteMovies  }) {
     }));
 }
 _c = FavoriteMovies;
-exports.default = FavoriteMovies // {favoriteMovies.map((movieId) => {
- //     let movie = movies.find((m) => m._id === movieId);
- //     return (
- //       <FavoriteCard
- //         key={movieId}
- //         movie={movie}
- //         handleFavorite={handleFavorite}
- //       >
- //         {movie.title}
-;
+exports.default = FavoriteMovies;
 var _c;
 $RefreshReg$(_c, "FavoriteMovies");
 
