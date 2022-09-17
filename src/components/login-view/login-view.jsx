@@ -30,48 +30,49 @@ export function LoginView(props) {
         }
         return isReq;
     }
-};
 
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    const isReq = validate();
-    if (isReq) {
-        /* Send a request to the server for authentication */
-        axios.post('https://intense-shore-03094.herokuapp.com/login', {
-            Username: username,
-            Password: password,
-        })
-            .then(response => {
-                const data = response.data;
-                props.onLoggedIn(data);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isReq = validate();
+        if (isReq) {
+            /* Send a request to the server for authentication */
+            axios.post('https://intense-shore-03094.herokuapp.com/login', {
+                Username: username,
+                Password: password,
             })
-            .catch(e => {
-                console.log('no such user')
-            });
-    }
+                .then(response => {
+                    const data = response.data;
+                    props.onLoggedIn(data);
+                })
+                .catch(e => {
+                    console.log('no such user')
+                });
+        }
+    };
+
+    return (
+        <Form className="bg-dark text-white">
+            <Form.Group controlId="formUsername">
+                <Form.Label className="text-warning">Username:</Form.Label>
+                <Form.Control placeholder="Enter username" value={username} type="text" onChange={e => setUsername(e.target.value)} />
+                { /*  */}
+                {usernameErr && <p>{usernameErr}</p>}
+            </Form.Group>
+
+            <Form.Group controlId="formPassword">
+                <Form.Label className="text-warning">Password:</Form.Label>
+                <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                {/*  */}
+                {passwordErr && <p>{passwordErr}</p>}
+            </Form.Group>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+                Submit
+            </Button>
+        </Form>
+    )
 };
-
-return (
-    <Form className="bg-dark text-white">
-        <Form.Group controlId="formUsername">
-            <Form.Label className="text-warning">Username:</Form.Label>
-            <Form.Control placeholder="Enter username" value={username} type="text" onChange={e => setUsername(e.target.value)} />
-            { /*  */}
-            {usernameErr && <p>{usernameErr}</p>}
-        </Form.Group>
-
-        <Form.Group controlId="formPassword">
-            <Form.Label className="text-warning">Password:</Form.Label>
-            <Form.Control type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-            {/*  */}
-            {passwordErr && <p>{passwordErr}</p>}
-        </Form.Group>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-            Submit
-        </Button>
-    </Form>
-)
 
 
 
