@@ -1,12 +1,14 @@
 import React from 'react'
 
-export function UserInfo({ email, name, }) {
+export function UserInfo(props) {
+    const username = localStorage.getItem('username');
+    const email = localStorage.getItem('email');
 
     return (
         <div>
             <h4>Your Information</h4>
-            <p>Name: (users.Name)</p>
-            <p>Email: (users.Email)</p>
+            <p>Name: (${username})</p>
+            <p>Email: (${email})</p>
         </div>
 
     )
