@@ -15,7 +15,7 @@ export function LoginView(props) {
     const validate = () => {
         let isReq = true;
         if (!username) {
-            setUsernameErr('Username Requiured');
+            setUsernameErr('Username Required');
             isReq = false;
         } else if (username.length < 5) {
             setUsernameErr('Username must be 5 characters long');
