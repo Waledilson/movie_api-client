@@ -36,7 +36,7 @@ export class MainView extends React.Component {
     }
 
     getMovies(token) {
-        axios.get('https://intense-shore-03094.herokuapp.com/movies', {
+        axios.get(`https://intense-shore-03094.herokuapp.com/movies`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -125,5 +125,3 @@ export class MainView extends React.Component {
         );
     }
 }
-
-export default MainView;
