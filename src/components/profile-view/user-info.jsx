@@ -1,17 +1,22 @@
-import React from 'react'
+// import React from 'react'
 
-export function UserInfo(props) {
-    const username = localStorage.getItem('username');
-    const email = localStorage.getItem('email');
+// export class UserInfo extends React.Component {
+//         constructor() {
+//             super();
+//             this.state = {
+//                 user: null
+//             }
+//         }
+//         render () {
+//         return (
+//             <div>
+//                 <h4>Your Information</h4>
+//                 <p>Name: (name)</p>
+//                 <p>Email: (email)</p>
+//             </div>
 
-    return (
-        <div>
-            <h4>Your Information</h4>
-            <p>Name: (${username})</p>
-            <p>Email: (${email})</p>
-        </div>
+//         )
+//     };
 
-    )
-}
+// }
 
-export default UserInfo
