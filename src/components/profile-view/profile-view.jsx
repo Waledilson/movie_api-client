@@ -56,7 +56,7 @@ export class ProfileView extends React.Component {
         if (!user) {
             if (action === 'add') {
                 this.setState({ favoriteMovies, movie })
-                axios.post(`https://intense-shore-03094.herokuapp.com/users/${username}/movies/${movie._id}`, {
+                axios.post('https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}', {
                     headers: { Authroization: `Bearer ${token}` }
                 })
                     .then((response) => {
@@ -68,7 +68,7 @@ export class ProfileView extends React.Component {
                     })
             } else if (action === 'remove') {
                 this.setState({ username, favoriteMovies })
-                axios.delete(`https://intense-shore-03094.herokuapp.com/users/${username}/favoriteMovies`, {
+                axios.delete('https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}', {
                     headers: { Authroization: `Bearer ${token}` }
                 })
                     .then((response) => {
