@@ -25,7 +25,7 @@ export default UpdateUser = (user) => {
     };
 
     return (
-        <form className='profile-form' onSubmit={(e) => handleSubmit(e)}>
+        <form className='profile-form' onSubmit={(e) => handleUpdate(e)}>
             <h2>Want to change some info??</h2>
             <label>Username:</label>
             <input type='text' name='Username' defaultValue={user.Username} onChange={e => handleUpdate(e.target.value)} />
