@@ -9,7 +9,7 @@ import './movie-card.scss';
 
 export class MovieCard extends React.Component {
     render() {
-        const { movie, handleFavorite, onClick, _id } = this.props;
+        const { movie, handleFavorite } = this.props;
 
         return (
             <Card className="bg-dark">
@@ -20,7 +20,7 @@ export class MovieCard extends React.Component {
                     <Link to={`/movies/${movie._id}`}>
                         <Button variant="link">Open</Button>
                     </Link>
-                    <Button variant="danger" onClick={() => handleFavorite(_id, 'add')}>add to favorites</Button>
+                    <Button variant="danger" value={'add'} onClick={() => props.handleFavorite('add')}>add to favorites</Button>
                 </Card.Body>
             </Card>
         );
