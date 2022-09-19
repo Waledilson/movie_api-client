@@ -23188,7 +23188,7 @@ var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
 class MovieCard extends _reactDefault.default.Component {
     render() {
-        const { movie , handleFavorite , onClick , _id  } = this.props;
+        const { movie , handleFavorite  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default, {
             className: "bg-dark",
             __source: {
@@ -23251,7 +23251,8 @@ class MovieCard extends _reactDefault.default.Component {
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                             variant: "danger",
-                            onClick: ()=>handleFavorite(_id, 'add')
+                            value: 'add',
+                            onClick: ()=>props.handleFavorite('add')
                             ,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
@@ -42338,7 +42339,7 @@ class ProfileView extends _reactDefault.default.Component {
                     favoriteMovies,
                     movie
                 });
-                _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${username}/movies/${movie._id}`, {
+                _axiosDefault.default.post('https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}', {
                     headers: {
                         Authroization: `Bearer ${token}`
                     }
@@ -42353,7 +42354,7 @@ class ProfileView extends _reactDefault.default.Component {
                     username,
                     favoriteMovies
                 });
-                _axiosDefault.default.delete(`https://intense-shore-03094.herokuapp.com/users/${username}/favoriteMovies`, {
+                _axiosDefault.default.delete('https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}', {
                     headers: {
                         Authroization: `Bearer ${token}`
                     }
