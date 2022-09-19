@@ -42631,34 +42631,35 @@ class FavoriteMovieList extends _reactDefault.default.Component {
     constructor(){
         super();
         this.state = {
+            user: null,
             favoriteMovies: []
         };
     }
     render() {
-        const { handleFavorite , favoriteMovies  } = this.props;
+        const { movie , handleFavorite , favoriteMovies  } = this.props;
         return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
             __source: {
                 fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                lineNumber: 17
+                lineNumber: 18
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
                 __source: {
                     fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                    lineNumber: 18
+                    lineNumber: 19
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                            lineNumber: 19
+                            lineNumber: 20
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                             __source: {
                                 fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                                lineNumber: 20
+                                lineNumber: 21
                             },
                             __self: this,
                             children: "Favorite Movies"
@@ -42667,15 +42668,15 @@ class FavoriteMovieList extends _reactDefault.default.Component {
                     /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
                         __source: {
                             fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                            lineNumber: 22
+                            lineNumber: 23
                         },
                         __self: this,
                         children: [
-                            favoriteMovies.map((movie)=>{
+                            favoriteMovies.map((movie1)=>{
                                 return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                                        lineNumber: 25
+                                        lineNumber: 26
                                     },
                                     __self: this,
                                     children: [
@@ -42683,14 +42684,14 @@ class FavoriteMovieList extends _reactDefault.default.Component {
                                             src: ImagePath,
                                             __source: {
                                                 fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                                                lineNumber: 26
+                                                lineNumber: 27
                                             },
                                             __self: this
                                         }),
                                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                             __source: {
                                                 fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                                                lineNumber: 27
+                                                lineNumber: 28
                                             },
                                             __self: this,
                                             children: Title
@@ -42701,7 +42702,7 @@ class FavoriteMovieList extends _reactDefault.default.Component {
                                             ,
                                             __source: {
                                                 fileName: "src/components/profile-view/favorite-movie-list.jsx",
-                                                lineNumber: 28
+                                                lineNumber: 29
                                             },
                                             __self: this,
                                             children: "remove from favorites"
