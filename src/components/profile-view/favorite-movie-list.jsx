@@ -3,9 +3,17 @@ import React from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export class FavoriteMovieList extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            user: null,
+            favoriteMovies: []
+        };
+    }
 
     render() {
-        const { handleFavorite, favoriteMovies } = this.props;
+        const { movie, handleFavorite, favoriteMovies } = this.props;
+
         return (
             <Container>
                 <Row>
@@ -21,14 +29,13 @@ export class FavoriteMovieList extends React.Component {
                                     <Button variant="danger" onClick={() => handleFavorite(_id, 'remove')}>remove from favorites</Button>
                                 </Col>
                             )
-                        })}
-
-
+                        }
+                        )};
                     </Col>
                 </Row>
             </Container>
 
-        );
-    }
-};
+        )
+    };
+}
 
