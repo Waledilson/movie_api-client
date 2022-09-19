@@ -15,9 +15,11 @@ export class ProfileView extends React.Component {
         super();
         this.state = {
             movies: [],
-            user: null
-        }
+            user: null,
+            favoriteMovies: []
+        };
     }
+
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
@@ -27,6 +29,7 @@ export class ProfileView extends React.Component {
             this.getUser(accessToken);
         }
     }
+
     getUser = (token) => {
         const Username = localStorage.getItem('user')
         axios.get(`https://intense-shore-03094.herokuapp.com/users/${username}`, {
@@ -44,15 +47,6 @@ export class ProfileView extends React.Component {
             .catch(function (error) {
                 console.log(error);
             });
-    }
-    handleUserInfo = (e, username) => {
-
-        axios.put(`https://intense-shore-03094.herokuapp.com/users/${username}`, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-            .then((response) => {
-                this.setState({})
-            })
     }
 
     handleFavorite = (movie, action) => {
@@ -87,9 +81,6 @@ export class ProfileView extends React.Component {
             }
         };
     }
-
-
-
 
     render() {
         const { handleUpdate, handleFavorite, Username, Email } = this.state;
