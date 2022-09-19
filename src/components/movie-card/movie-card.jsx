@@ -20,7 +20,7 @@ export class MovieCard extends React.Component {
                     <Link to={`/movies/${movie._id}`}>
                         <Button variant="link">Open</Button>
                     </Link>
-                    <Button variant="danger" value={'add'} onClick={() => props.handleFavorite('add')}>add to favorites</Button>
+                    <Button variant="danger" value={'add'} onClick={() => handleFavorite('add')}>add to favorites</Button>
                 </Card.Body>
             </Card>
         );

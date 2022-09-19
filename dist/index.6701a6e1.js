@@ -23252,7 +23252,7 @@ class MovieCard extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                             variant: "danger",
                             value: 'add',
-                            onClick: ()=>props.handleFavorite('add')
+                            onClick: ()=>handleFavorite('add')
                             ,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
