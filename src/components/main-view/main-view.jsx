@@ -62,6 +62,7 @@ export class MainView extends React.Component {
 
     render() {
         const { movies, user } = this.state;
+        // const { handleFavorite } = this.props;
 
         if (!user) return <Row>
             <Col>
@@ -81,7 +82,7 @@ export class MainView extends React.Component {
                         if (movies.length === 0) return <div className="main-view" />
                         return movies.map((m) => (
                             <Col md={3} key={m._id}>
-                                <MovieCard movie={m} />
+                                <MovieCard movie={m} favoriteMovies={favoriteMovies} handleFavorite={handleFavorite} />
                             </Col>
                         ))
                     }} />
