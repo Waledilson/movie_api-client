@@ -8,6 +8,7 @@ import UpdateUser from './update-user';
 
 import './profile-view.scss';
 import axios from 'axios';
+import { useState } from 'react';
 
 
 export class ProfileView extends React.Component {
@@ -49,42 +50,55 @@ export class ProfileView extends React.Component {
             });
     }
 
-    handleFavorite = (movie, action) => {
-        const { favoriteMovies } = this.state;
-        const username = localStorage.getItem('user');
-        const token = localStorage.getItem('token');
-        if (!user) {
-            if (action === 'add') {
+    delFavorite(favoriteMovies, movie) {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((response) => {
                 this.setState({ favoriteMovies, movie })
-                axios.post(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
-                    headers: { Authroization: `Bearer ${token}` }
-                })
-                    .then((response) => {
-                        console.log(response);
-                        alert(`${movie.Name} has ben added to ${username}\'s favorite movie list!`);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            } else if (action === 'remove') {
-                this.setState({ username, favoriteMovies })
-                axios.delete(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
-                    headers: { Authroization: `Bearer ${token}` }
-                })
-                    .then((response) => {
-                        console.log(response);
-                        alert(`${movie.Name} has been removed from ${username}\'s favorite movie list!`);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-            }
-        };
+                console.log(response)
+                alert(`${movie} has been removed from ${user}\'s favorite movie list!`)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
+
+    // handleFavorite = (movie, action) => {
+    //     const { favoriteMovies } = this.state;
+    //     const username = localStorage.getItem('user');
+    //     const token = localStorage.getItem('token');
+    //     if (!user) {
+    //         if (action === 'add') {
+    //             this.setState({ favoriteMovies, movie })
+    //             axios.post(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
+    //                 headers: { Authroization: `Bearer ${token}` }
+    //             })
+    //                 .then((response) => {
+    //                     console.log(response);
+    //                     alert(`${movie.Name} has ben added to ${username}\'s favorite movie list!`);
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log(error);
+    //                 })
+    //         } else if (action === 'remove') {
+    //             this.setState({ username, favoriteMovies })
+    //             axios.delete(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
+    //                 headers: { Authroization: `Bearer ${token}` }
+    //             })
+    //                 .then((response) => {
+    //                     console.log(response);
+    //                     alert(`${movie.Name} has been removed from ${username}\'s favorite movie list!`);
+    //                 })
+    //                 .catch((error) => {
+    //                     console.log(error);
+    //                 });
+    //         }
+    //     };
+    // }
 
     render() {
         const { handleUpdate, favoriteMovies, handleFavorite, Username, Email } = this.state;
-
 
         return (
             <Container>
@@ -104,7 +118,7 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                     <Col>
-                        <FavoriteMovieList handleFavorite={handleFavorite} favoriteMovies={favoriteMovies} />
+                        <FavoriteMovieList movie={m} favoriteMovies={favoriteMovies} />
                     </Col>
                 </Row>
             </Container >
