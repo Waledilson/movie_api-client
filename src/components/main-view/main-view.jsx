@@ -60,8 +60,22 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
+    addFavorite = (user, movie) => {
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((response) => {
+                this.setState({ user, movie })
+                console.log(response)
+                alert(`${movie} has been added to ${user}\'s favorite movie list!`)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
     render() {
-        const { movies, user } = this.state;
+        const { movies, user, addFavorite } = this.state;
         // const { handleFavorite } = this.props;
 
         if (!user) return <Row>
@@ -82,7 +96,7 @@ export class MainView extends React.Component {
                         if (movies.length === 0) return <div className="main-view" />
                         return movies.map((m) => (
                             <Col md={3} key={m._id}>
-                                <MovieCard movie={m} favoriteMovies={favoriteMovies} handleFavorite={handleFavorite} />
+                                <MovieCard movie={m} />
                             </Col>
                         ))
                     }} />
