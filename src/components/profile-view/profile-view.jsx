@@ -64,6 +64,24 @@ export class ProfileView extends React.Component {
             })
     }
 
+    // delUser = (e) => {
+    //     e.preventDefault();
+    //     axios.delete('https://intense-shore-03094.herokuapp.com/user', {
+    //         Username: username,
+    //         Password: password,
+    //         Email: email,
+    //         Birthday: birthday
+    //     })
+    //         .then(response => {
+    //             const data = response.data;
+    //             console.log(data);
+    //             window.open('/', '_self');
+    //         })
+    //         .catch(e => {
+    //             console.log('eror registering user')
+    //         });
+    // };
+
     // handleFavorite = (movie, action) => {
     //     const { favoriteMovies } = this.state;
     //     const username = localStorage.getItem('user');
@@ -98,7 +116,7 @@ export class ProfileView extends React.Component {
     // }
 
     render() {
-        const { handleUpdate, favoriteMovies, handleFavorite, Username, Email } = this.state;
+        const { handleUpdate, favoriteMovies, Username, Email } = this.state;
 
         return (
             <Container>
