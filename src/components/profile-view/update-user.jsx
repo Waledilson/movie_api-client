@@ -24,6 +24,21 @@ export default UpdateUser = (user) => {
             });
     };
 
+    delUser = (e) => {
+        e.preventDefault();
+        axios.delete('https://intense-shore-03094.herokuapp.com/user', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                const data = response.data;
+                console.log(data);
+                window.open('/registration-view/registration-view.jsx');
+            })
+            .catch(e => {
+                console.log('eror registering user')
+            });
+    };
+
     return (
         <form className='profile-form' onSubmit={(e) => handleUpdate(e)}>
             <h2>Want to change some info??</h2>
