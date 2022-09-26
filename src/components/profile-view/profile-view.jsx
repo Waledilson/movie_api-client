@@ -8,7 +8,7 @@ import UpdateUser from './update-user';
 
 import './profile-view.scss';
 import axios from 'axios';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 
 export class ProfileView extends React.Component {
@@ -33,7 +33,7 @@ export class ProfileView extends React.Component {
 
     getUser = (token) => {
         const Username = localStorage.getItem('user')
-        axios.get('https://intense-shore-03094.herokuapp.com/users/:Username', {
+        axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
@@ -51,7 +51,7 @@ export class ProfileView extends React.Component {
     }
 
     delFavorite(favoriteMovies, movie) {
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/`, {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
@@ -64,59 +64,8 @@ export class ProfileView extends React.Component {
             })
     }
 
-    // delUser = (e) => {
-    //     e.preventDefault();
-    //     axios.delete('https://intense-shore-03094.herokuapp.com/user', {
-    //         Username: username,
-    //         Password: password,
-    //         Email: email,
-    //         Birthday: birthday
-    //     })
-    //         .then(response => {
-    //             const data = response.data;
-    //             console.log(data);
-    //             window.open('/', '_self');
-    //         })
-    //         .catch(e => {
-    //             console.log('eror registering user')
-    //         });
-    // };
-
-    // handleFavorite = (movie, action) => {
-    //     const { favoriteMovies } = this.state;
-    //     const username = localStorage.getItem('user');
-    //     const token = localStorage.getItem('token');
-    //     if (!user) {
-    //         if (action === 'add') {
-    //             this.setState({ favoriteMovies, movie })
-    //             axios.post(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
-    //                 headers: { Authroization: `Bearer ${token}` }
-    //             })
-    //                 .then((response) => {
-    //                     console.log(response);
-    //                     alert(`${movie.Name} has ben added to ${username}\'s favorite movie list!`);
-    //                 })
-    //                 .catch((error) => {
-    //                     console.log(error);
-    //                 })
-    //         } else if (action === 'remove') {
-    //             this.setState({ username, favoriteMovies })
-    //             axios.delete(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/${movie._id}`, {
-    //                 headers: { Authroization: `Bearer ${token}` }
-    //             })
-    //                 .then((response) => {
-    //                     console.log(response);
-    //                     alert(`${movie.Name} has been removed from ${username}\'s favorite movie list!`);
-    //                 })
-    //                 .catch((error) => {
-    //                     console.log(error);
-    //                 });
-    //         }
-    //     };
-    // }
-
     render() {
-        const { handleUpdate, favoriteMovies, Username, Email } = this.state;
+        const { handleUpdate, favoriteMovies, Username, Email, movies } = this.state;
 
         return (
             <Container>
@@ -136,7 +85,7 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                     <Col>
-                        <FavoriteMovieList movie={m} favoriteMovies={favoriteMovies} />
+                        <FavoriteMovieList movie={movies} favoriteMovies={favoriteMovies} />
                     </Col>
                 </Row>
             </Container >
