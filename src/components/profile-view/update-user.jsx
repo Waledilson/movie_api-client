@@ -9,7 +9,7 @@ export default UpdateUser = (user) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        axios.put(`https://intense-shore-03094.herokuapp.com/users/:username`, {
+        axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
             Password: password,
             Email: email,
@@ -32,10 +32,11 @@ export default UpdateUser = (user) => {
             .then(response => {
                 const data = response.data;
                 console.log(data);
+                alert('User profile deleted');
                 window.open('/registration-view/registration-view.jsx');
             })
             .catch(e => {
-                console.log('eror registering user')
+                console.log('eror deleting user')
             });
     };
 
