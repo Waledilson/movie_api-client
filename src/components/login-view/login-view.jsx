@@ -75,8 +75,6 @@ export function LoginView(props) {
     )
 };
 
-
-
 LoginView.propTypes = {
     user: PropTypes.shape({
         Username: PropTypes.string,
