@@ -63,13 +63,6 @@ export class MainView extends React.Component {
     render() {
         const { movies, user } = this.state;
 
-        if (!user) return <Row>
-            <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-            </Col>
-        </Row>
-        if (movies.length === 0) return <div className="main-view" />;
-
         return (
             <Router>
                 <Link to={`/users/${user}`} >{user}</Link>
@@ -79,7 +72,8 @@ export class MainView extends React.Component {
                             <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />
-                        return movies.map((m) => (
+
+                        return movies.map(m => (
                             <Col md={3} key={m._id}>
                                 <MovieCard movie={m} />
                             </Col>
