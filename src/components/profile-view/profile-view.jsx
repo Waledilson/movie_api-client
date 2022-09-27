@@ -57,7 +57,7 @@ export class ProfileView extends React.Component {
             .then((response) => {
                 this.setState({ favoriteMovies, movie })
                 console.log(response)
-                alert(`${movie} has been removed from ${user}\'s favorite movie list!`)
+                alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
             })
             .catch((error) => {
                 console.log(error);
