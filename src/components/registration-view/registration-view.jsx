@@ -13,7 +13,7 @@ export function RegistrationView(props) {
 
     const handleRegistration = (e) => {
         e.preventDefault();
-        axios.post('https://intense-shore-03094.herokuapp.com/login', {
+        axios.post('https://intense-shore-03094.herokuapp.com/users', {
             Username: username,
             Password: password,
             Email: email,
@@ -25,7 +25,7 @@ export function RegistrationView(props) {
                 window.open('/', '_self');
             })
             .catch(e => {
-                console.log('eror registering user')
+                console.log('error registering user')
             });
     };
     return (
