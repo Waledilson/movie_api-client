@@ -23056,7 +23056,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 88
+                                lineNumber: 89
                             },
                             __self: this
                         }),
@@ -23076,7 +23076,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 94
+                                lineNumber: 95
                             },
                             __self: this
                         }),
@@ -23102,7 +23102,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 99
+                                lineNumber: 100
                             },
                             __self: this
                         }),
@@ -23128,7 +23128,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 108
+                                lineNumber: 109
                             },
                             __self: this
                         }),
@@ -23147,7 +23147,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 117
+                                lineNumber: 118
                             },
                             __self: this
                         })
@@ -23189,19 +23189,20 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
 const MovieCard = (props)=>{
-    const { movie , token  } = props;
-    addFavorite = (user, movie1)=>{
-        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/:Username/movies/`, {
+    const { movie , token , favoriteMovies  } = props;
+    addFavorite = (MovieID, user)=>{
+        const Username = localStorage.getItem('user');
+        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${MovieID}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             undefined.setState({
                 user,
-                movie: movie1
+                favoriteMovies
             });
             console.log(response);
-            alert(`${movie1} has been added to ${user}\'s favorite movie list!`);
+            alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
         }).catch((error)=>{
             console.log(error);
         });
@@ -23210,7 +23211,7 @@ const MovieCard = (props)=>{
         className: "bg-dark",
         __source: {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 30
+            lineNumber: 32
         },
         __self: undefined,
         children: [
@@ -23220,14 +23221,14 @@ const MovieCard = (props)=>{
                 src: props.movie.ImagePath,
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 31
+                    lineNumber: 33
                 },
                 __self: undefined
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Body, {
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 32
+                    lineNumber: 34
                 },
                 __self: undefined,
                 children: [
@@ -23235,7 +23236,7 @@ const MovieCard = (props)=>{
                         className: "text-warning",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 33
+                            lineNumber: 35
                         },
                         __self: undefined,
                         children: props.movie.Title
@@ -23244,7 +23245,7 @@ const MovieCard = (props)=>{
                         className: "text-white",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 34
+                            lineNumber: 36
                         },
                         __self: undefined,
                         children: props.movie.Description
@@ -23253,14 +23254,14 @@ const MovieCard = (props)=>{
                         to: `/movies/${movie._id}`,
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 35
+                            lineNumber: 37
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                             variant: "link",
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 36
+                                lineNumber: 38
                             },
                             __self: undefined,
                             children: "Open"
@@ -23273,7 +23274,7 @@ const MovieCard = (props)=>{
                         },
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 38
+                            lineNumber: 40
                         },
                         __self: undefined,
                         children: "add to favorites"
@@ -42054,6 +42055,8 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _registrationViewScss = require("./registration-view.scss");
 var _s = $RefreshSig$();
@@ -42075,19 +42078,19 @@ function RegistrationView(props) {
             console.log(data);
             window.open('/', '_self');
         }).catch((e1)=>{
-            console.log('eror registering user');
+            console.log('error registering user');
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 32
+            lineNumber: 33
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
             __source: {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 33
+                lineNumber: 34
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
@@ -42096,26 +42099,26 @@ function RegistrationView(props) {
                 lg: 8,
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 34
+                    lineNumber: 35
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.CardGroup, {
                     __source: {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 35
+                        lineNumber: 36
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Card, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 36
+                            lineNumber: 37
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card.Body, {
                             className: "bg-dark text-white",
                             __source: {
                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                lineNumber: 37
+                                lineNumber: 38
                             },
                             __self: this,
                             children: [
@@ -42123,7 +42126,7 @@ function RegistrationView(props) {
                                     className: "text-warning",
                                     __source: {
                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                        lineNumber: 38
+                                        lineNumber: 39
                                     },
                                     __self: this,
                                     children: "Please Register"
@@ -42131,14 +42134,14 @@ function RegistrationView(props) {
                                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
                                     __source: {
                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                        lineNumber: 39
+                                        lineNumber: 40
                                     },
                                     __self: this,
                                     children: [
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 40
+                                                lineNumber: 41
                                             },
                                             __self: this,
                                             children: [
@@ -42146,7 +42149,7 @@ function RegistrationView(props) {
                                                     className: "text-warning",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 41
+                                                        lineNumber: 42
                                                     },
                                                     __self: this,
                                                     children: "Username:"
@@ -42160,7 +42163,7 @@ function RegistrationView(props) {
                                                     placeholder: "enter a username",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 42
+                                                        lineNumber: 43
                                                     },
                                                     __self: this
                                                 })
@@ -42169,7 +42172,7 @@ function RegistrationView(props) {
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 44
+                                                lineNumber: 45
                                             },
                                             __self: this,
                                             children: [
@@ -42177,7 +42180,7 @@ function RegistrationView(props) {
                                                     className: "text-warning",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 45
+                                                        lineNumber: 46
                                                     },
                                                     __self: this,
                                                     children: "Password:"
@@ -42191,7 +42194,7 @@ function RegistrationView(props) {
                                                     placeholder: "your pass word must be at least 8 characters",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 46
+                                                        lineNumber: 47
                                                     },
                                                     __self: this
                                                 })
@@ -42200,7 +42203,7 @@ function RegistrationView(props) {
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 48
+                                                lineNumber: 49
                                             },
                                             __self: this,
                                             children: [
@@ -42208,7 +42211,7 @@ function RegistrationView(props) {
                                                     className: "text-warning",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 49
+                                                        lineNumber: 50
                                                     },
                                                     __self: this,
                                                     children: "Email:"
@@ -42222,7 +42225,7 @@ function RegistrationView(props) {
                                                     placeholder: "enter your email",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 50
+                                                        lineNumber: 51
                                                     },
                                                     __self: this
                                                 })
@@ -42231,7 +42234,7 @@ function RegistrationView(props) {
                                         /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 52
+                                                lineNumber: 53
                                             },
                                             __self: this,
                                             children: [
@@ -42239,7 +42242,7 @@ function RegistrationView(props) {
                                                     className: "text-warning",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 53
+                                                        lineNumber: 54
                                                     },
                                                     __self: this,
                                                     children: "Birthday:"
@@ -42253,7 +42256,7 @@ function RegistrationView(props) {
                                                     placeholder: "enter your date of birth",
                                                     __source: {
                                                         fileName: "src/components/registration-view/registration-view.jsx",
-                                                        lineNumber: 54
+                                                        lineNumber: 55
                                                     },
                                                     __self: this
                                                 })
@@ -42265,7 +42268,7 @@ function RegistrationView(props) {
                                             onClick: handleRegistration,
                                             __source: {
                                                 fileName: "src/components/registration-view/registration-view.jsx",
-                                                lineNumber: 56
+                                                lineNumber: 57
                                             },
                                             __self: this,
                                             children: "Register"
@@ -42290,7 +42293,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"gBRyr","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9NYEM","./registration-view.scss":"fr9ZP","axios":"iYoWk"}],"fr9ZP":[function() {},{}],"jyMAr":[function() {},{}],"2E7Aw":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"gBRyr","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9NYEM","./registration-view.scss":"fr9ZP","axios":"iYoWk","prop-types":"1tgq3"}],"fr9ZP":[function() {},{}],"jyMAr":[function() {},{}],"2E7Aw":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$58c6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42361,7 +42364,7 @@ class ProfileView extends _reactDefault.default.Component {
                 movie
             });
             console.log(response);
-            alert(`${movie} has been removed from ${user}\'s favorite movie list!`);
+            alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`);
         }).catch((error)=>{
             console.log(error);
         });
@@ -42494,7 +42497,7 @@ exports.default = UpdateUser = (user)=>{
     const birthday = localStorage.getItem('birthday');
     const handleUpdate = (e)=>{
         e.preventDefault();
-        axios.put(`https://intense-shore-03094.herokuapp.com/users/:username`, {
+        axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
             Password: password,
             Email: email,
@@ -42515,9 +42518,10 @@ exports.default = UpdateUser = (user)=>{
         }).then((response)=>{
             const data = response.data;
             console.log(data);
+            alert('User profile deleted');
             window.open('/registration-view/registration-view.jsx');
         }).catch((e1)=>{
-            console.log('eror registering user');
+            console.log('eror deleting user');
         });
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs("form", {
@@ -42526,14 +42530,14 @@ exports.default = UpdateUser = (user)=>{
         ,
         __source: {
             fileName: "src/components/profile-view/update-user.jsx",
-            lineNumber: 43
+            lineNumber: 44
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h2", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 44
+                    lineNumber: 45
                 },
                 __self: undefined,
                 children: "Want to change some info??"
@@ -42541,7 +42545,7 @@ exports.default = UpdateUser = (user)=>{
             /*#__PURE__*/ _jsxRuntime.jsx("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 45
+                    lineNumber: 46
                 },
                 __self: undefined,
                 children: "Username:"
@@ -42554,14 +42558,14 @@ exports.default = UpdateUser = (user)=>{
                 ,
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 46
+                    lineNumber: 47
                 },
                 __self: undefined
             }),
             /*#__PURE__*/ _jsxRuntime.jsx("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 47
+                    lineNumber: 48
                 },
                 __self: undefined,
                 children: "Password"
@@ -42574,14 +42578,14 @@ exports.default = UpdateUser = (user)=>{
                 ,
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 48
+                    lineNumber: 49
                 },
                 __self: undefined
             }),
             /*#__PURE__*/ _jsxRuntime.jsx("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 49
+                    lineNumber: 50
                 },
                 __self: undefined,
                 children: "Email address"
@@ -42594,7 +42598,7 @@ exports.default = UpdateUser = (user)=>{
                 ,
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 50
+                    lineNumber: 51
                 },
                 __self: undefined
             }),
@@ -42603,7 +42607,7 @@ exports.default = UpdateUser = (user)=>{
                 type: "submit",
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 51
+                    lineNumber: 52
                 },
                 __self: undefined,
                 children: "Update"
@@ -42611,7 +42615,7 @@ exports.default = UpdateUser = (user)=>{
             /*#__PURE__*/ _jsxRuntime.jsx("label", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 52
+                    lineNumber: 53
                 },
                 __self: undefined,
                 children: "Birthday"
@@ -42624,7 +42628,7 @@ exports.default = UpdateUser = (user)=>{
                 ,
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 53
+                    lineNumber: 54
                 },
                 __self: undefined
             })
