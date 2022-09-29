@@ -13,15 +13,15 @@ export const MovieCard = (props) => {
 
     const { movie, token } = props;
 
-    addFavorite = (user, MovieID) => {
+    addFavorite = (movieId) => {
         const Username = localStorage.getItem('user')
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${MovieID}`, {
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
-                this.setState({ user, movie });
+                this.setState({ favoriteMovies, movie });
                 console.log(response);
-                alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
+                // alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
             })
             .catch((error) => {
                 console.log(error);
@@ -30,10 +30,10 @@ export const MovieCard = (props) => {
 
     return (
         <Card className="bg-dark">
-            <Card.Img crossOrigin="true" variant="top" src={props.movie.ImagePath} />
+            <Card.Img crossOrigin="true" variant="top" src={movie.ImagePath} />
             <Card.Body>
-                <Card.Title className="text-warning">{props.movie.Title}</Card.Title>
-                <Card.Text className="text-white">{props.movie.Description}</Card.Text>
+                <Card.Title className="text-warning">{movie.Title}</Card.Title>
+                <Card.Text className="text-white">{movie.Description}</Card.Text>
                 <Link to={`/movies/${movie._id}`}>
                     <Button variant="link">Open</Button>
                 </Link>
