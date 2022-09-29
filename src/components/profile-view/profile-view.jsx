@@ -38,11 +38,10 @@ export class ProfileView extends React.Component {
         })
             .then((response) => {
                 this.setState({
-                    Username: response.data.username,
-                    Password: response.data.password,
-                    Email: response.data.email,
-                    Birthday: response.data.birthday,
-                    FavoriteMovies: response.data.favoriteMovies
+                    Username: response.data.Username,
+                    Email: response.data.Email,
+                    Birthday: response.data.Birthday,
+                    FavoriteMovies: response.data.FavoriteMovies
                 });
             })
             .catch(function (error) {
@@ -50,14 +49,16 @@ export class ProfileView extends React.Component {
             });
     }
 
-    delFavorite(favoriteMovies, movie) {
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie}`, {
+    delFavorite(props) {
+        const { Username, movieId, movie } = this.state;
+        const favoriteMovies = props;
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
                 this.setState({ favoriteMovies, movie })
                 console.log(response)
-                alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
+                alert(`${movie.Title} has been removed from ${Username}\'s favorite movie list!`)
             })
             .catch((error) => {
                 console.log(error);
@@ -65,7 +66,7 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { handleUpdate, favoriteMovies, Username, Email, movies } = this.state;
+        const { handleUpdate, delFavorite, favoriteMovies, Username, Email, movies } = this.state;
 
         return (
             <Container>
@@ -85,7 +86,7 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                     <Col>
-                        <FavoriteMovieList movie={movies} favoriteMovies={favoriteMovies} />
+                        <FavoriteMovieList movie={movies} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
                     </Col>
                 </Row>
             </Container >
