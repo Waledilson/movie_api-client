@@ -36,7 +36,7 @@ export default UpdateUser = (user) => {
                 window.open('/registration-view/registration-view.jsx');
             })
             .catch(e => {
-                console.log('eror deleting user')
+                console.log('error deleting user')
             });
     };
 
