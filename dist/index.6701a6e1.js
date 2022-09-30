@@ -23169,7 +23169,7 @@ const MovieCard = (props)=>{
     const { movie , user  } = props;
     const token = localStorage.getItem('token');
     const { favoriteMovies  } = _react.useState([]);
-    addFavorite = (movieId)=>{
+    const addFavorite = (movieId)=>{
         _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
