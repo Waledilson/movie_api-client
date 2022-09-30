@@ -56,7 +56,7 @@ export function RegistrationView(props) {
                     alert('Registration successful, please login!');
                     window.open('/', '_self');
                 })
-                .catch(e => {
+                .catch((response) => {
                     console.log(response);
                     alert('unable to register')
                 });
