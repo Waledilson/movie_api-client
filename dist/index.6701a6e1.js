@@ -22960,12 +22960,17 @@ class MainView extends _reactDefault.default.Component {
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
     }
+    // onRegistered() {
+    //     this.setState({
+    //         isRegistered: false
+    //     });
+    // }
     render() {
         const { movies , user  } = this.state;
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 67
+                lineNumber: 73
             },
             __self: this,
             children: [
@@ -22973,7 +22978,7 @@ class MainView extends _reactDefault.default.Component {
                     to: `/users/${user}`,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 68
+                        lineNumber: 74
                     },
                     __self: this,
                     children: user
@@ -22982,7 +22987,7 @@ class MainView extends _reactDefault.default.Component {
                     className: "main-view justify-content-md-center bg-dark",
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 69
+                        lineNumber: 75
                     },
                     __self: this,
                     children: [
@@ -23008,7 +23013,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 70
+                                lineNumber: 76
                             },
                             __self: this
                         }),
@@ -23025,7 +23030,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 82
+                                lineNumber: 88
                             },
                             __self: this
                         }),
@@ -23045,7 +23050,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 88
+                                lineNumber: 94
                             },
                             __self: this
                         }),
@@ -23071,7 +23076,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 93
+                                lineNumber: 99
                             },
                             __self: this
                         }),
@@ -23097,7 +23102,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 102
+                                lineNumber: 108
                             },
                             __self: this
                         }),
@@ -23116,7 +23121,7 @@ class MainView extends _reactDefault.default.Component {
                             },
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 111
+                                lineNumber: 117
                             },
                             __self: this
                         })
@@ -23157,11 +23162,15 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
+var _s = $RefreshSig$();
 const MovieCard = (props)=>{
-    const { movie , token  } = props;
+    _s();
+    const { movie  } = props;
+    const token = localStorage.getItem('token');
+    const { favoriteMovies  } = _react.useState([]);
+    const { user  } = props;
     addFavorite = (movieId)=>{
-        const Username = localStorage.getItem('user');
-        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
+        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -23180,7 +23189,7 @@ const MovieCard = (props)=>{
         className: "bg-dark",
         __source: {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 32
+            lineNumber: 37
         },
         __self: undefined,
         children: [
@@ -23190,14 +23199,14 @@ const MovieCard = (props)=>{
                 src: movie.ImagePath,
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 33
+                    lineNumber: 38
                 },
                 __self: undefined
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Body, {
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 34
+                    lineNumber: 39
                 },
                 __self: undefined,
                 children: [
@@ -23205,7 +23214,7 @@ const MovieCard = (props)=>{
                         className: "text-warning",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 35
+                            lineNumber: 40
                         },
                         __self: undefined,
                         children: movie.Title
@@ -23214,7 +23223,7 @@ const MovieCard = (props)=>{
                         className: "text-white",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 36
+                            lineNumber: 41
                         },
                         __self: undefined,
                         children: movie.Description
@@ -23223,14 +23232,14 @@ const MovieCard = (props)=>{
                         to: `/movies/${movie._id}`,
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 37
+                            lineNumber: 42
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                             variant: "link",
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 38
+                                lineNumber: 43
                             },
                             __self: undefined,
                             children: "Open"
@@ -23243,7 +23252,7 @@ const MovieCard = (props)=>{
                         },
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 40
+                            lineNumber: 45
                         },
                         __self: undefined,
                         children: "add to favorites"
@@ -23253,6 +23262,7 @@ const MovieCard = (props)=>{
         ]
     }));
 };
+_s(MovieCard, "xLV1nIs69FXgUNs/4TU0nEzBWCs=");
 _c = MovieCard;
 MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
@@ -42088,7 +42098,7 @@ function RegistrationView(props) {
             console.log(data);
             alert('Registration successful, please login!');
             window.open('/', '_self');
-        }).catch((e1)=>{
+        }).catch((response)=>{
             console.log(response);
             alert('unable to register');
         });
