@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import React, { useState } from 'react';
+
 
 
 import { Link } from "react-router-dom";
@@ -11,11 +13,13 @@ import './movie-card.scss';
 
 export const MovieCard = (props) => {
 
-    const { movie, token } = props;
+    const { movie, user } = props;
+    const token = localStorage.getItem('token');
+    const { favoriteMovies } = useState([]);
 
     addFavorite = (movieId) => {
-        const Username = localStorage.getItem('user')
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
+
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
