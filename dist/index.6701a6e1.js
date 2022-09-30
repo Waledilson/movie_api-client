@@ -23006,7 +23006,8 @@ class MainView extends _reactDefault.default.Component {
                                 return movies.map((m)=>/*#__PURE__*/ _jsxRuntime.jsx(_colDefault.default, {
                                         md: 3,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCard.MovieCard, {
-                                            movie: m
+                                            movie: m,
+                                            user: user
                                         })
                                     }, m._id)
                                 );
@@ -23169,7 +23170,7 @@ const MovieCard = (props)=>{
     const token = localStorage.getItem('token');
     const { favoriteMovies  } = _react.useState([]);
     addFavorite = (movieId)=>{
-        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -23247,7 +23248,7 @@ const MovieCard = (props)=>{
                     /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
                         variant: "danger",
                         onClick: ()=>{
-                            addFavorite(movie);
+                            addFavorite(movie._id);
                         },
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
