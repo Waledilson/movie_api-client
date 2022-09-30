@@ -17,7 +17,7 @@ export const MovieCard = (props) => {
     const token = localStorage.getItem('token');
     const { favoriteMovies } = useState([]);
 
-    addFavorite = (movieId) => {
+    const addFavorite = (movieId) => {
 
         axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
