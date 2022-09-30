@@ -60,6 +60,12 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
+    // onRegistered() {
+    //     this.setState({
+    //         isRegistered: false
+    //     });
+    // }
+
     render() {
         const { movies, user } = this.state;
 
