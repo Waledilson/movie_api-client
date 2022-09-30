@@ -19,7 +19,7 @@ export const MovieCard = (props) => {
 
     addFavorite = (movieId) => {
 
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`, {
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
@@ -41,7 +41,7 @@ export const MovieCard = (props) => {
                 <Link to={`/movies/${movie._id}`}>
                     <Button variant="link">Open</Button>
                 </Link>
-                <Button variant="danger" onClick={() => { addFavorite(movie) }}>add to favorites</Button>
+                <Button variant="danger" onClick={() => { addFavorite(movie._id) }}>add to favorites</Button>
             </Card.Body>
         </Card>
     );
