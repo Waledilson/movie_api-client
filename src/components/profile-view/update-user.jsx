@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 
 export default UpdateUser = (user) => {
     const username = localStorage.getItem('username');
@@ -8,7 +10,7 @@ export default UpdateUser = (user) => {
 
 
     const handleUpdate = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
             Password: password,
