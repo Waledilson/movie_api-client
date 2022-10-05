@@ -49,16 +49,16 @@ export class ProfileView extends React.Component {
             });
     }
 
-    delFavorite(props) {
-        const { Username, movieId, movie } = this.state;
-        const favoriteMovies = props;
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
+    delFavorite(movieId) {
+        const { movie } = props;
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
-                this.setState({ favoriteMovies, movie })
                 console.log(response)
-                alert(`${movie.Title} has been removed from ${Username}\'s favorite movie list!`)
+                alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
             })
             .catch((error) => {
                 console.log(error);
@@ -66,27 +66,27 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { handleUpdate, delFavorite, favoriteMovies, Username, Email, movies } = this.state;
+        const { user, delFavorite, favoriteMovies, Username, Email, movie } = this.state;
 
         return (
             <Container>
                 <Row>
                     <Col xs={12} sm={4}>
                         <Card>
-                            <Card.Body>
+                            <Card.Body className='bg-dark text-warning'>
                                 <Card.Text /> name: {Username} email: {Email}
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col xs={12} sm={8}>
                         <Card>
-                            <Card.Body>
-                                <UpdateUser handleUpdate={handleUpdate} />
+                            <Card.Body className='bg-dark text-warning'>
+                                <UpdateUser user={user} />
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col>
-                        <FavoriteMovieList movie={movies} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
+                        <FavoriteMovieList movie={movie} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
                     </Col>
                 </Row>
             </Container >
