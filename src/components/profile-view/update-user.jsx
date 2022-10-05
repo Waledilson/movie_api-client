@@ -35,6 +35,8 @@ export default UpdateUser = (user) => {
             .then(response => {
                 const data = response.data;
                 console.log(data);
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
                 alert('User profile deleted');
                 window.open('/registration-view/registration-view.jsx');
             })
@@ -44,17 +46,30 @@ export default UpdateUser = (user) => {
     };
 
     return (
-        <form className='profile-form' onSubmit={(e) => handleUpdate(e)}>
-            <h2>Want to change some info??</h2>
-            <label>Username:</label>
-            <input type='text' name='Username' defaultValue={username} onChange={e => setUsername(e.target.value)} />
-            <label>Password</label>
-            <input type='password' name='password' defaultValue={password} onChange={e => setPassword(e.target.value)} />
-            <label>Email address</label>
-            <input type='email' name='email' defaultValue={email} onChange={e => setEmail(e.target.value)} />
-            <label>Birthday</label>
-            <input type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
-            <button variant='primary' type='submit'>Update</button>
+        <form className='profile-form bg-dark text-warning' >
+            <h3>Want to change some info??</h3>
+            <div>
+                <label>Username:</label>
+                <input type='text' name='Username' defaultValue={username} onChange={e => setUsername(e.target.value)} />
+            </div>
+            <div>
+                <label>Password:</label>
+                <input type='password' name='password' defaultValue={password} onChange={e => setPassword(e.target.value)} />
+            </div>
+            <div>
+                <label>Email address</label>
+                <input type='email' name='email' defaultValue={email} onChange={e => setEmail(e.target.value)} />
+            </div>
+            <div>
+                <label>Birthday</label>
+                <input type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
+            </div>
+            <div>
+                <button variant='primary' type='submit' onSubmit={(e) => handleUpdate(e)}>Update</button>
+                <button variant='primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</button>
+            </div>
+
+
 
 
 
