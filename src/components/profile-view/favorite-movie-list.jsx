@@ -1,8 +1,9 @@
 import React from 'react'
 // import Link from "react-router-dom";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 
 export function FavoriteMovieList({ favoriteMovies, delFavorite }) {
+    const { movie } = movie.props;
     return (
 
         <Container>
@@ -13,11 +14,13 @@ export function FavoriteMovieList({ favoriteMovies, delFavorite }) {
                 <Col>
                     {favoriteMovies.map((movie) => {
                         return (
-                            <Col key={movie._id}>
-                                <img crossOrigin="true" src={movie.ImagePath} />
-                                <Col>{movie.Title}</Col>
-                                <Button variant="danger" onClick={() => { delFavorite(movie) }}>remove from favorites</Button>
-                            </Col>
+                            <Card key={movie._id}>
+                                <Card.Img crossOrigin="true" src={movie.ImagePath} />
+                                <Card.Body>
+                                    <Card.Title>{movie.Title}</Card.Title>
+                                    <Button variant="danger" onClick={() => { delFavorite(movie) }}><Card.Text>remove from favorites</Card.Text></Button>
+                                </Card.Body>
+                            </Card>
                         )
                     })
                     }
