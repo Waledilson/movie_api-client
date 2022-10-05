@@ -12,18 +12,23 @@ import { Link } from "react-router-dom";
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
+    const { movie } = props;
 
-    const { movie, user } = props;
-    const token = localStorage.getItem('token');
-    const { favoriteMovies } = useState([]);
+
+
     const addFavorite = (movieId) => {
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
-            headers: { Authorization: `Bearer ${token}` }
-        })
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+
+
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
+            {},
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            })
             .then((response) => {
-                this.setState({ favoriteMovies, movie });
                 console.log(response);
-                // alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
+                alert(`${movieId} has been added to ${user}\'s favorite movie list!`);
             })
             .catch((error) => {
                 console.log(error);
