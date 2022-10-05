@@ -12,6 +12,8 @@ import { RegistrationView } from '../registration-view/registration-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
+// import { Navbar } from '../nav-bar/nav-bar';
+
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
