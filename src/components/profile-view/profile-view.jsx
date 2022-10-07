@@ -41,7 +41,7 @@ export class ProfileView extends React.Component {
                     Username: response.data.Username,
                     Email: response.data.Email,
                     Birthday: response.data.Birthday,
-                    FavoriteMovies: response.data.FavoriteMovies
+                    favoriteMovies: response.data.FavoriteMovies
                 });
             })
             .catch(function (error) {
@@ -66,7 +66,7 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { user, delFavorite, favoriteMovies, Username, Email, movie } = this.state;
+        const { user, delFavorite, favoriteMovies, Username, Email, movie, ImagePath, Title } = this.state;
 
         return (
             <Container>
@@ -86,7 +86,16 @@ export class ProfileView extends React.Component {
                         </Card>
                     </Col>
                     <Col>
-                        <FavoriteMovieList movie={movie} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
+                        <Col>
+                            <h2>Favorite Movies</h2>
+                        </Col>
+
+                        {favoriteMovies.map(movie => (
+                            <Col key={movie._id}>
+                                <FavoriteMovieList ImagePath={ImagePath} movie={movie} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
+                            </Col>
+                        )
+                        )};
                     </Col>
                 </Row>
             </Container >
