@@ -15,7 +15,6 @@ export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
-            movies: [],
             user: null,
             favoriteMovies: []
         };
@@ -43,30 +42,41 @@ export class ProfileView extends React.Component {
                     Birthday: response.data.Birthday,
                     favoriteMovies: response.data.FavoriteMovies
                 });
+                const favMovies = response.data.FavoriteMovies.map(movieId => {
+                    const movie = this.props.movies.filter(movie => movie._id === movieId);
+                    return movie[0];
+                })
+                this.setState({
+                    favoriteMovies: favMovies
+                });
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
 
-    delFavorite(movieId) {
-        const { movie } = props;
+    delFavorite(movie) {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movie._id}`,
+            {}, {
+
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
                 console.log(response)
                 alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
+                this.setState({
+                    movies: response.data
+                });
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 
     render() {
-        const { user, delFavorite, favoriteMovies, Username, Email, movie, ImagePath, Title } = this.state;
+        const { user, favoriteMovies, Username, Email } = this.state;
 
         return (
             <Container>
@@ -89,10 +99,9 @@ export class ProfileView extends React.Component {
                         <Col>
                             <h2>Favorite Movies</h2>
                         </Col>
-
                         {favoriteMovies.map(movie => (
-                            <Col key={movie._id}>
-                                <FavoriteMovieList ImagePath={ImagePath} movie={movie} favoriteMovies={favoriteMovies} delFavorite={delFavorite} />
+                            <Col key={movie._id} >
+                                <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
                             </Col>
                         )
                         )};
