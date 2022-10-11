@@ -62,12 +62,6 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
-    // onRegistered() {
-    //     this.setState({
-    //         isRegistered: false
-    //     });
-    // }
-
     render() {
         const { movies, user } = this.state;
 
@@ -119,7 +113,7 @@ export class MainView extends React.Component {
                     <Route path={`/users/${user}`} render={({ history }) => {
                         if (!user) return <Redirect to="/" />
                         return <Col>
-                            <ProfileView user={user} onBackClick={() => history.goBack()} />
+                            <ProfileView user={user} movies={movies} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
                 </Row>
