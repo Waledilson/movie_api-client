@@ -39,8 +39,7 @@ export class ProfileView extends React.Component {
                 this.setState({
                     Username: response.data.Username,
                     Email: response.data.Email,
-                    Birthday: response.data.Birthday,
-                    favoriteMovies: response.data.FavoriteMovies
+                    Birthday: response.data.Birthday
                 });
                 const favMovies = response.data.FavoriteMovies.map(movieId => {
                     const movie = this.props.movies.filter(movie => movie._id === movieId);
@@ -55,20 +54,17 @@ export class ProfileView extends React.Component {
             });
     }
 
-    delFavorite(movie) {
+    delFavorite = (movie) => {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movie._id}`,
-            {}, {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movie._id}`, {
 
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
                 console.log(response)
                 alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
-                this.setState({
-                    movies: response.data
-                });
+                this.componentDidMount();
             })
             .catch((error) => {
                 console.log(error);
