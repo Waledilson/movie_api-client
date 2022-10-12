@@ -28,7 +28,7 @@ export const MovieCard = (props) => {
             })
             .then((response) => {
                 console.log(response);
-                alert(`${movieId} has been added to ${user}\'s favorite movie list!`);
+                alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
             })
             .catch((error) => {
                 console.log(error);
