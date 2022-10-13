@@ -19,8 +19,6 @@ export const MovieCard = (props) => {
     const addFavorite = (movieId) => {
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
-
-
         axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
             {},
             {
