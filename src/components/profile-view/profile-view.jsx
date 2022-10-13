@@ -77,17 +77,17 @@ export class ProfileView extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col xs={12} sm={4}>
+                    <Col xs={12} sm={4} lg={3}>
                         <Card>
                             <Card.Body className='bg-dark text-warning'>
                                 <Card.Text /> name: {Username} email: {Email}
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col xs={12} sm={8}>
+                    <Col xs={12} sm={8} lg={9}>
                         <Card>
                             <Card.Body className='bg-dark text-warning'>
-                                <UpdateUser user={user} />
+                                <UpdateUser user={user} token={this.token} />
                             </Card.Body>
                         </Card>
                     </Col>
