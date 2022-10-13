@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Form, Button } from 'react-bootstrap';
 
 
 export default UpdateUser = (user) => {
@@ -27,53 +28,49 @@ export default UpdateUser = (user) => {
             });
     };
 
-    delUser = (e) => {
-        e.preventDefault();
-        axios.delete('https://intense-shore-03094.herokuapp.com/user', {
+    const delUser = () => {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(response => {
-                const data = response.data;
-                console.log(data);
-                localStorage.removeItem('user');
-                localStorage.removeItem('token');
+            .then(() => {
                 alert('User profile deleted');
+                localStorage.clear();
                 window.open('/registration-view/registration-view.jsx');
             })
-            .catch(e => {
-                console.log('error deleting user')
+            .catch((error) => {
+                console.log(error + 'error deleting user')
             });
     };
 
     return (
-        <form className='profile-form bg-dark text-warning' >
-            <h3>Want to change some info??</h3>
-            <div>
-                <label>Username:</label>
-                <input type='text' name='Username' defaultValue={username} onChange={e => setUsername(e.target.value)} />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input type='password' name='password' defaultValue={password} onChange={e => setPassword(e.target.value)} />
-            </div>
-            <div>
-                <label>Email address</label>
-                <input type='email' name='email' defaultValue={email} onChange={e => setEmail(e.target.value)} />
-            </div>
-            <div>
-                <label>Birthday</label>
-                <input type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
-            </div>
-            <div>
-                <button variant='primary' type='submit' onSubmit={(e) => handleUpdate(e)}>Update</button>
-                <button variant='primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</button>
-            </div>
+        <Form className='profile-form bg-dark text-warning' >
+            <h4>Want to change some info??</h4>
+            <Form.Group>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control type='text' name='Username' defaultValue={username} onChange={e => setUsername(e.target.value)} />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Password:</Form.Label>
+                <Form.Control type='password' name='password' defaultValue={password} onChange={e => setPassword(e.target.value)} />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type='email' name='email' defaultValue={email} onChange={e => setEmail(e.target.value)} />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Birthday</Form.Label>
+                <Form.Control type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
+            </Form.Group>
+            <Form.Group>
+                <Button variant='primary' type='submit' onSubmit={(e) => handleUpdate(e)}>Update</Button>
+                <Button variant='primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</Button>
+            </Form.Group>
 
 
 
 
 
-        </form>
+        </Form>
     )
 };
 
