@@ -42587,8 +42587,9 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
-exports.default = UpdateUser = _s((user)=>{
+exports.default = UpdateUser = _s((props)=>{
     _s();
+    const { user  } = props;
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
@@ -42596,22 +42597,23 @@ exports.default = UpdateUser = _s((user)=>{
     const handleUpdate = (e)=>{
         e.preventDefault();
         const token = localStorage.getItem('token');
-        console.log('user', user.user);
-        console.log('token', user.token);
-        _axiosDefault.default.put(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
+        _axiosDefault.default.put(`https://intense-shore-03094.herokuapp.com/users/${user.user}`, {
             Username: username,
             Password: password,
             Email: email,
             Birthday: birthday
+        }, {
+            headers: {
+                Authorization: `Bearer ${user.token}`
+            }
         }).then((response)=>{
             const data = response.data;
             console.log(data);
         }).catch((e1)=>{
             console.log('error updating your info');
         });
+        console.log('token', token);
+        console.log('user', user);
     };
     const delUser = (e)=>{
         e.preventDefault();
@@ -42634,46 +42636,17 @@ exports.default = UpdateUser = _s((user)=>{
         ,
         __source: {
             fileName: "src/components/profile-view/update-user.jsx",
-            lineNumber: 50
+            lineNumber: 54
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 51
+                    lineNumber: 55
                 },
                 __self: undefined,
                 children: "Want to change some info??"
-            }),
-            /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
-                __source: {
-                    fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 52
-                },
-                __self: undefined,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
-                        __source: {
-                            fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 53
-                        },
-                        __self: undefined,
-                        children: "Username:"
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
-                        type: "text",
-                        name: "Username",
-                        defaultValue: username,
-                        onChange: (e)=>setUsername(e.target.value)
-                        ,
-                        __source: {
-                            fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 54
-                        },
-                        __self: undefined
-                    })
-                ]
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
@@ -42688,13 +42661,13 @@ exports.default = UpdateUser = _s((user)=>{
                             lineNumber: 57
                         },
                         __self: undefined,
-                        children: "Password:"
+                        children: "Username:"
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
-                        type: "password",
-                        name: "password",
-                        defaultValue: password,
-                        onChange: (e)=>setPassword(e.target.value)
+                        type: "text",
+                        name: "Username",
+                        defaultValue: username,
+                        onChange: (e)=>setUsername(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
@@ -42717,13 +42690,13 @@ exports.default = UpdateUser = _s((user)=>{
                             lineNumber: 61
                         },
                         __self: undefined,
-                        children: "Email address"
+                        children: "Password:"
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
-                        type: "email",
-                        name: "email",
-                        defaultValue: email,
-                        onChange: (e)=>setEmail(e.target.value)
+                        type: "password",
+                        name: "password",
+                        defaultValue: password,
+                        onChange: (e)=>setPassword(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
@@ -42746,13 +42719,13 @@ exports.default = UpdateUser = _s((user)=>{
                             lineNumber: 65
                         },
                         __self: undefined,
-                        children: "Birthday"
+                        children: "Email address"
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
-                        type: "date",
-                        name: "birthday",
-                        defaultValue: birthday,
-                        onChange: (e)=>setBirthday(e.target.value)
+                        type: "email",
+                        name: "email",
+                        defaultValue: email,
+                        onChange: (e)=>setEmail(e.target.value)
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
@@ -42769,12 +42742,41 @@ exports.default = UpdateUser = _s((user)=>{
                 },
                 __self: undefined,
                 children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
+                        __source: {
+                            fileName: "src/components/profile-view/update-user.jsx",
+                            lineNumber: 69
+                        },
+                        __self: undefined,
+                        children: "Birthday"
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Control, {
+                        type: "date",
+                        name: "birthday",
+                        defaultValue: birthday,
+                        onChange: (e)=>setBirthday(e.target.value)
+                        ,
+                        __source: {
+                            fileName: "src/components/profile-view/update-user.jsx",
+                            lineNumber: 70
+                        },
+                        __self: undefined
+                    })
+                ]
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
+                __source: {
+                    fileName: "src/components/profile-view/update-user.jsx",
+                    lineNumber: 72
+                },
+                __self: undefined,
+                children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                         variant: "primary",
                         type: "submit",
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 69
+                            lineNumber: 73
                         },
                         __self: undefined,
                         children: "Update"
@@ -42786,7 +42788,7 @@ exports.default = UpdateUser = _s((user)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 70
+                            lineNumber: 74
                         },
                         __self: undefined,
                         children: "Delete Profile"
