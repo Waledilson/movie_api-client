@@ -9,11 +9,13 @@ export default UpdateUser = (user) => {
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
 
-
-
     const handleUpdate = (e) => {
         e.preventDefault();
+        const token = localStorage.getItem('token')
+        console.log('user', user)
+        console.log('token', token)
         axios.put(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
+            headers: { Authorization: `Bearer ${token}` },
             Username: username,
             Password: password,
             Email: email,
@@ -28,14 +30,16 @@ export default UpdateUser = (user) => {
             });
     };
 
-    const delUser = () => {
-        axios.delete(`https://intense-shore-03094.herokuapp.com/${user}`, {
+    const delUser = (e) => {
+        e.preventDefault();
+        const token = localStorage.getItem('token')
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user.user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(() => {
-                alert('User profile deleted');
+            .then((res) => {
+                console.log('User profile deleted', res)
                 localStorage.clear();
-                window.open('/registration-view/registration-view.jsx');
+                window.open('/');
             })
             .catch((error) => {
                 console.log(error + 'error deleting user')
@@ -43,7 +47,7 @@ export default UpdateUser = (user) => {
     };
 
     return (
-        <Form className='profile-form bg-dark text-warning' >
+        <Form className='profile-form bg-dark text-warning' onSubmit={(e) => handleUpdate(e)}>
             <h4>Want to change some info??</h4>
             <Form.Group>
                 <Form.Label>Username:</Form.Label>
@@ -62,7 +66,7 @@ export default UpdateUser = (user) => {
                 <Form.Control type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
             </Form.Group>
             <Form.Group>
-                <Button variant='primary' type='submit' onSubmit={(e) => handleUpdate(e)}>Update</Button>
+                <Button variant='primary' type='submit' >Update</Button>
                 <Button variant='primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</Button>
             </Form.Group>
 
