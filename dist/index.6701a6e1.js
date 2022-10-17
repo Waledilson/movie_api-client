@@ -42596,8 +42596,8 @@ exports.default = UpdateUser = _s((user)=>{
     const handleUpdate = (e)=>{
         e.preventDefault();
         const token = localStorage.getItem('token');
-        console.log('user', user);
-        console.log('token', token);
+        console.log('user', user.user);
+        console.log('token', user.token);
         _axiosDefault.default.put(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
