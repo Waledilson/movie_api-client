@@ -72,19 +72,20 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { user, favoriteMovies, Username, Email } = this.state;
+        const { user, favoriteMovies, Username, Email, token } = this.state;
 
         return (
             <Container>
                 <Row>
-                    <Col xs={12} sm={4} lg={3}>
+                    <Col xs={12} sm={5} lg={3}>
                         <Card>
                             <Card.Body className='bg-dark text-warning'>
-                                <Card.Text /> name: {Username} email: {Email}
+                                <Card.Text /> name: {Username}
+                                <Card.Text /> email: {Email}
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col xs={12} sm={8} lg={9}>
+                    <Col xs={12} sm={7} lg={9}>
                         <Card>
                             <Card.Body className='bg-dark text-warning'>
                                 <UpdateUser user={user} token={this.token} />
@@ -96,7 +97,7 @@ export class ProfileView extends React.Component {
                             <h2>Favorite Movies</h2>
                         </Col>
                         {favoriteMovies.map(movie => (
-                            <Col key={movie._id} >
+                            <Col key={movie._id} xs={6} md={6} lg={3}>
                                 <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
                             </Col>
                         )
