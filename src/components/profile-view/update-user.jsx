@@ -3,7 +3,8 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
 
-export default UpdateUser = (user) => {
+export default UpdateUser = (props) => {
+    const { user } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -11,16 +12,17 @@ export default UpdateUser = (user) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token')
-        console.log('user', user.user)
-        console.log('token', user.token)
-        axios.put(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
-            headers: { Authorization: `Bearer ${token}` },
+        const token = localStorage.getItem('token');
+        axios.put(`https://intense-shore-03094.herokuapp.com/users/${user.user}`, {
             Username: username,
             Password: password,
             Email: email,
             Birthday: birthday
-        })
+        },
+            {
+                headers: { Authorization: `Bearer ${user.token}` }
+            }
+        )
             .then(response => {
                 const data = response.data;
                 console.log(data);
@@ -28,11 +30,13 @@ export default UpdateUser = (user) => {
             .catch((e) => {
                 console.log('error updating your info')
             });
+        console.log('token', token);
+        console.log('user', user);
     };
 
     const delUser = (e) => {
         e.preventDefault();
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user.user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
