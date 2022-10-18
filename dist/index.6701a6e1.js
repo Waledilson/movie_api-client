@@ -42506,6 +42506,7 @@ class ProfileView extends _reactDefault.default.Component {
                                 children: /*#__PURE__*/ _jsxRuntime.jsx(_updateUserDefault.default, {
                                     user: user,
                                     token: this.token,
+                                    Username: Username,
                                     __source: {
                                         fileName: "src/components/profile-view/profile-view.jsx",
                                         lineNumber: 91
@@ -42587,9 +42588,8 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactBootstrap = require("react-bootstrap");
 var _s = $RefreshSig$();
-exports.default = UpdateUser = _s((props)=>{
+exports.default = UpdateUser = _s((user)=>{
     _s();
-    const { user  } = props;
     const [username, setUsername] = _react.useState('');
     const [password, setPassword] = _react.useState('');
     const [email, setEmail] = _react.useState('');
@@ -42604,7 +42604,7 @@ exports.default = UpdateUser = _s((props)=>{
             Birthday: birthday
         }, {
             headers: {
-                Authorization: `Bearer ${user.token}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
             const data = response.data;
@@ -42612,8 +42612,6 @@ exports.default = UpdateUser = _s((props)=>{
         }).catch((e1)=>{
             console.log('error updating your info');
         });
-        console.log('token', token);
-        console.log('user', user);
     };
     const delUser = (e)=>{
         e.preventDefault();
@@ -42636,14 +42634,14 @@ exports.default = UpdateUser = _s((props)=>{
         ,
         __source: {
             fileName: "src/components/profile-view/update-user.jsx",
-            lineNumber: 54
+            lineNumber: 52
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 55
+                    lineNumber: 53
                 },
                 __self: undefined,
                 children: "Want to change some info??"
@@ -42651,14 +42649,14 @@ exports.default = UpdateUser = _s((props)=>{
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 56
+                    lineNumber: 54
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 57
+                            lineNumber: 55
                         },
                         __self: undefined,
                         children: "Username:"
@@ -42671,7 +42669,7 @@ exports.default = UpdateUser = _s((props)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 58
+                            lineNumber: 56
                         },
                         __self: undefined
                     })
@@ -42680,14 +42678,14 @@ exports.default = UpdateUser = _s((props)=>{
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 60
+                    lineNumber: 58
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 61
+                            lineNumber: 59
                         },
                         __self: undefined,
                         children: "Password:"
@@ -42700,7 +42698,7 @@ exports.default = UpdateUser = _s((props)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 62
+                            lineNumber: 60
                         },
                         __self: undefined
                     })
@@ -42709,14 +42707,14 @@ exports.default = UpdateUser = _s((props)=>{
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 64
+                    lineNumber: 62
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 65
+                            lineNumber: 63
                         },
                         __self: undefined,
                         children: "Email address"
@@ -42729,7 +42727,7 @@ exports.default = UpdateUser = _s((props)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 66
+                            lineNumber: 64
                         },
                         __self: undefined
                     })
@@ -42738,14 +42736,14 @@ exports.default = UpdateUser = _s((props)=>{
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 68
+                    lineNumber: 66
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Form.Label, {
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 69
+                            lineNumber: 67
                         },
                         __self: undefined,
                         children: "Birthday"
@@ -42758,7 +42756,7 @@ exports.default = UpdateUser = _s((props)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 70
+                            lineNumber: 68
                         },
                         __self: undefined
                     })
@@ -42767,7 +42765,7 @@ exports.default = UpdateUser = _s((props)=>{
             /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form.Group, {
                 __source: {
                     fileName: "src/components/profile-view/update-user.jsx",
-                    lineNumber: 72
+                    lineNumber: 70
                 },
                 __self: undefined,
                 children: [
@@ -42776,7 +42774,7 @@ exports.default = UpdateUser = _s((props)=>{
                         type: "submit",
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 73
+                            lineNumber: 71
                         },
                         __self: undefined,
                         children: "Update"
@@ -42788,7 +42786,7 @@ exports.default = UpdateUser = _s((props)=>{
                         ,
                         __source: {
                             fileName: "src/components/profile-view/update-user.jsx",
-                            lineNumber: 74
+                            lineNumber: 72
                         },
                         __self: undefined,
                         children: "Delete Profile"
@@ -42886,7 +42884,7 @@ $RefreshReg$(_c, "FavoriteMovieList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"gBRyr","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9NYEM","react/jsx-runtime":"8xIwr"}],"8WCoL":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"gBRyr","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9NYEM"}],"8WCoL":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5f0a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
