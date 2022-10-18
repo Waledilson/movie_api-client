@@ -3,8 +3,7 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
 
-export default UpdateUser = (props) => {
-    const { user } = props;
+export default UpdateUser = (user) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -20,7 +19,7 @@ export default UpdateUser = (props) => {
             Birthday: birthday
         },
             {
-                headers: { Authorization: `Bearer ${user.token}` }
+                headers: { Authorization: `Bearer ${token}` }
             }
         )
             .then(response => {
@@ -30,8 +29,7 @@ export default UpdateUser = (props) => {
             .catch((e) => {
                 console.log('error updating your info')
             });
-        console.log('token', token);
-        console.log('user', user);
+
     };
 
     const delUser = (e) => {
