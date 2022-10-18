@@ -88,7 +88,7 @@ export class ProfileView extends React.Component {
                     <Col xs={12} sm={7} lg={9}>
                         <Card>
                             <Card.Body className='bg-dark text-warning'>
-                                <UpdateUser user={user} token={this.token} />
+                                <UpdateUser user={user} token={this.token} Username={Username} />
                             </Card.Body>
                         </Card>
                     </Col>
