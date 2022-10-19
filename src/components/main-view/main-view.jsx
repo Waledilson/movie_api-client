@@ -67,7 +67,8 @@ export class MainView extends React.Component {
 
         return (
             <Router>
-                <Link to={`/users/${user}`} >{user}</Link>
+                <Link className="text-warning" to={`/users/${user}`} >{user}</Link>
+                <Link className="text-warning" to="/" > Home</Link>
                 <Row className="main-view justify-content-md-center bg-dark">
                     <Route exact path="/" render={() => {
                         if (!user) return <Col>
@@ -76,7 +77,7 @@ export class MainView extends React.Component {
                         if (movies.length === 0) return <div className="main-view" />
 
                         return movies.map(m => (
-                            <Col md={3} key={m._id}>
+                            <Col className="d-flex" md={3} key={m._id}>
                                 <MovieCard movie={m} user={user} />
                             </Col>
                         ))
