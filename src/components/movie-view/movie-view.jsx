@@ -51,7 +51,7 @@ export class MovieView extends React.Component {
                         <span className="value text-white">{movie.Featured.bool}</span>
                     </Col>
                 </Row>
-                <Button onClick={() => {
+                <Button variant="warning" onClick={() => {
                     onBackClick();
                 }}>Back</Button>
             </Container>
