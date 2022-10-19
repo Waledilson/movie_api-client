@@ -14,16 +14,16 @@ export class DirectorView extends React.Component {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p className="text-warning">Name:
-                                <span className="text-white"> {director.Name}</span></p>
+                            <span className="text-warning">Name:</span>
+                            <span className="text-white"> {director.Name}</span>
                         </Card.Text>
                         <Card.Text>
-                            <p className="text-warning">Born:
-                                <span className="text-white"> {director.Birth}</span></p>
+                            <span className="text-warning">Born:</span>
+                            <span className="text-white"> {director.Birth}</span>
                         </Card.Text>
                         <Card.Text>
-                            <p className="text-warning">Bio:
-                                <span className="text-white"> {director.Bio}</span></p>
+                            <span className="text-warning">Bio:</span>
+                            <span className="text-white"> {director.Bio}</span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
