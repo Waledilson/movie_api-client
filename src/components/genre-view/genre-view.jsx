@@ -16,12 +16,12 @@ export class GenreView extends React.Component {
                     </Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <p className="text-warning">Genre Name:
-                                <span className="text-white"> {genre.Name}</span></p>
+                            <span className="text-warning">Genre Name:</span>
+                            <span className="text-white"> {genre.Name}</span>
                         </Card.Text>
                         <Card.Text>
-                            <p className="text-warning">Description:
-                                <span className="text-white"> {genre.Description}</span></p>
+                            <span className="text-warning">Description:</span>
+                            <span className="text-white"> {genre.Description}</span>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
