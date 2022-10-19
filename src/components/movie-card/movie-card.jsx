@@ -34,16 +34,18 @@ export const MovieCard = (props) => {
     }
 
     return (
-        <Card className="bg-dark">
+        <Card className="bg-dark flex-fill">
             <Card.Img crossOrigin="true" variant="top" src={movie.ImagePath} />
             <Card.Body>
-                <Card.Title className="text-warning">{movie.Title}</Card.Title>
-                <Card.Text className="text-white">{movie.Description}</Card.Text>
                 <Link to={`/movies/${movie._id}`}>
-                    <Button variant="link">Open</Button>
+                    <Button className="text-warning" variant="link">{movie.Title}</Button>
                 </Link>
-                <Button variant="danger" onClick={() => { addFavorite(movie._id) }}>add to favorites</Button>
+                <Card.Text className="text-white">{movie.Description}</Card.Text>
             </Card.Body>
+            <Card.Footer>
+                <Button className="align-self-end text=black" size="sm" variant="warning" onClick={() => { addFavorite(movie._id) }}>favorite this!</Button>
+            </Card.Footer>
+
         </Card>
     );
 }
