@@ -67,8 +67,8 @@ export class MainView extends React.Component {
 
         return (
             <Router>
-                <Link className="text-warning" to={`/users/${user}`} >{user}</Link>
-                <Link className="text-warning" to="/" > Home</Link>
+                <Link className="text-primary" to={`/users/${user}`} >{user}</Link>
+                <Link className="text-primary" to="/" > Home</Link>
                 <Row className="main-view justify-content-md-center bg-dark">
                     <Route exact path="/" render={() => {
                         if (!user) return <Col>
