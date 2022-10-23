@@ -4,16 +4,18 @@ import { Form, Button } from 'react-bootstrap';
 
 
 export default UpdateUser = (props) => {
-    const { Username, user } = props;
+    const { user, Username } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [birthday, setBirthday] = useState('');
 
+
     const handleUpdate = (e) => {
         e.preventDefault();
+        const { Username } = props;
         const token = localStorage.getItem('token');
-        axios.put(`https://intense-shore-03094.herokuapp.com/users/${user.Username}`, {
+        axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
             Password: password,
             Email: email,
@@ -69,8 +71,8 @@ export default UpdateUser = (props) => {
                 <Form.Control size="sm" type='date' name='birthday' defaultValue={birthday} onChange={e => setBirthday(e.target.value)} />
             </Form.Group>
             <Form.Group>
-                <Button size="sm" variant='primary' type='submit' onClick={(e) => handleUpdate(e)}>Update</Button>
-                <Button size="sm" variant='primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</Button>
+                <Button size="sm" variant='dark text-primary' type='submit' onClick={(e) => handleUpdate(e)}>Update</Button>
+                <Button size="sm" variant='dark text-primary' type='submit' onClick={(e) => delUser(e)}>Delete Profile</Button>
             </Form.Group>
 
 
