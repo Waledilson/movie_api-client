@@ -43,7 +43,7 @@ export const MovieCard = (props) => {
                 <Card.Text className="text-white">{movie.Description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-                <Button className="align-self-end text=black" size="sm" variant="warning" onClick={() => { addFavorite(movie._id) }}>favorite this!</Button>
+                <Button className="align-self-end" size="sm" variant="dark text-primary" onClick={() => { addFavorite(movie._id) }}>favorite this!</Button>
             </Card.Footer>
 
         </Card>
