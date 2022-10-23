@@ -9,6 +9,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie, onBackClick } = this.props;
+        console.log('movie', movie);
 
         return (
             <Container>
@@ -33,7 +34,7 @@ export class MovieView extends React.Component {
                     <Col className="movie-genre">
                         <span className="label text-warning">Genre: </span>
                         <Link to={`/genres/${movie.Genre.Name}`}>
-                            <span className="director-link link text-light">{movie.Genre.Name}</span>
+                            <span className="director-link link text-primary">{movie.Genre.Name}</span>
                         </Link>
                     </Col>
                 </Row>
@@ -41,7 +42,7 @@ export class MovieView extends React.Component {
                     <Col className="movie-director">
                         <span className="label text-warning">Directed by: </span>
                         <Link to={`/directors/${movie.Director.Name}`}>
-                            <span className="director-link link text-light">{movie.Director.Name}</span>
+                            <span className="director-link link text-primary">{movie.Director.Name}</span>
                         </Link>
                     </Col>
                 </Row>
@@ -51,17 +52,17 @@ export class MovieView extends React.Component {
                         <span className="value text-white">{movie.Featured.bool}</span>
                     </Col>
                 </Row>
-                <Button variant="warning" onClick={() => {
+                <Button variant="dark text-primary" size="sm" onClick={() => {
                     onBackClick();
                 }}>Back</Button>
-            </Container>
+            </Container >
         );
     }
 }
 MovieView.propTypes = {
     movie: PropTypes.shape({
         ImagePath: PropTypes.string,
-        Title: PropTypes.string.isRequired,
+        Title: PropTypes.string,
         Description: PropTypes.string
         // Genre: PropTypes.object,
         // Director: PropTypes.object,
