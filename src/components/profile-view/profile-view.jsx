@@ -77,33 +77,35 @@ export class ProfileView extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col xs={12} sm={4} lg={5}>
-                        <Card>
-                            <Card.Body className='bg-dark text-warning'>
-                                <Card.Text /> name: {Username}
-                                <Card.Text /> email: {Email}
+                    <Col xs={12} sm={5} lg={5}>
+                        <Card className='bg-dark text-warning'>
+                            <Card.Body >
+                                <h4>User Information</h4>
+                                <Card.Text /> name: <span className="text-white">{Username}</span>
+                                <Card.Text /> email: <span className="text-white"> {Email}</span>
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col xs={12} sm={8} lg={7}>
-                        <Card>
-                            <Card.Body className='bg-dark text-warning'>
-                                <UpdateUser user={user} token={this.token} Username={Username} />
+                    <Col xs={12} sm={7} lg={7}>
+                        <Card className='bg-dark text-warning'>
+                            <Card.Body>
+                                <UpdateUser user={user} Username={Username} />
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col>
-                        <Col>
+                        <Col className='bg-dark text-warning'>
                             <h2>Favorite Movies</h2>
                         </Col>
-                        {favoriteMovies.map(movie => (
-                            <Row className="d-flex" key={movie._id}>
-                                <Col xs={12} sm={4} lg={3} >
-                                    <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
-                                </Col>
+                        <Container>
+                            <Row xl={3} lg={6} md={12}>
+                                {favoriteMovies.map(movie => (
+                                    <Col xs={12} sm={4} lg={3} key={movie._id}>
+                                        <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
+                                    </Col>
+                                ))};
                             </Row>
-                        )
-                        )};
+                        </Container>
                     </Col>
                 </Row>
             </Container >
