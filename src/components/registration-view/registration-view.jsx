@@ -73,22 +73,22 @@ export function RegistrationView(props) {
                                 <Form>
                                     <Form.Group>
                                         <Form.Label className="text-warning" >Username:</Form.Label>
-                                        <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} required placeholder="enter a username" />
+                                        <Form.Control size="sm" type="text" value={username} onChange={e => setUsername(e.target.value)} required placeholder="enter a username" />
                                         {values.usernameErr && <p>(values.usernameErr</p>}
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label className="text-warning">Password:</Form.Label>
-                                        <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="your pass word must be at least 8 characters" />
+                                        <Form.Control size="sm" type="password" value={password} onChange={e => setPassword(e.target.value)} required placeholder="your pass word must be at least 8 characters" />
                                         {values.passwordErr && <p>(values.passwordErr</p>}
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label className="text-warning">Email:</Form.Label>
-                                        <Form.Control type="text" value={email} onChange={e => setEmail(e.target.value)} required placeholder="enter your email" />
+                                        <Form.Control size="sm" type="text" value={email} onChange={e => setEmail(e.target.value)} required placeholder="enter your email" />
                                         {values.emailErr && <p>(values.emailErr</p>}
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Label className="text-warning">Birthday:</Form.Label>
-                                        <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} required placeholder="enter your date of birth" />
+                                        <Form.Control size="sm" type="date" value={birthday} onChange={e => setBirthday(e.target.value)} required placeholder="enter your date of birth" />
                                     </Form.Group>
                                     <Button variant="primary" type="submit" onClick={handleRegistration}>Register</Button>
                                 </Form >
