@@ -27,7 +27,7 @@ export class DirectorView extends React.Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <Button onClick={() => {
+                        <Button variant="dark text-primary" onClick={() => {
                             onBackClick(null);
                         }}>Back</Button>
                     </Card.Footer>
