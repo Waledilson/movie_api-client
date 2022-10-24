@@ -13,7 +13,6 @@ export default UpdateUser = (props) => {
 
     const handleUpdate = (e) => {
         e.preventDefault();
-        const { Username } = props;
         const token = localStorage.getItem('token');
         axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
@@ -26,8 +25,12 @@ export default UpdateUser = (props) => {
             }
         )
             .then(response => {
+                localStorage.setItem('user', response.data.Username);
                 const data = response.data;
-                console.log(data);
+                console.log('data', data);
+                window.open(`/users/${Username}`, '_self');
+
+
             })
             .catch((e) => {
                 console.log('error updating your info')
