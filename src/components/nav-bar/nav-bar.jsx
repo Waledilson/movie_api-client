@@ -1,16 +1,28 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Container, Button } from 'react-bootstrap';
 
-export default Navbar = () => {
+
+export function Navbar(props) {
+    const { user } = props;
+
+    handleLogOut = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        window.open(`/`, '_self');
+        onLoggedOut(user);
+    };
+
+
     return (
 
-        <Navbar bg="dark" variant="dark">
+        <Navbar fixed="top" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="">Martini Shot</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Movie List</Nav.Link>
-                    <Nav.Link href="#features">Profile</Nav.Link>
+                    <Navbar.Brand href={`/`} className="text-warning float-left">Martini Shot</Navbar.Brand>
+                    <Nav.Link className="text-primary" href={`/users/${user}`}>Profile</Nav.Link>
+                    <Nav.Link size="sm" variant="link" className="float-right text-primary" onClick={(handleLogOut)}>Log out</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
