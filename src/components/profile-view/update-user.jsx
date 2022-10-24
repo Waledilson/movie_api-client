@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 
 
 export default UpdateUser = (props) => {
-    const { user, Username } = props;
+    const { user } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -14,6 +14,7 @@ export default UpdateUser = (props) => {
     const handleUpdate = (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
+        const Username = localStorage.getItem('user')
         axios.put(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             Username: username,
             Password: password,
