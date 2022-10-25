@@ -29,7 +29,7 @@ export default UpdateUser = (props) => {
                 localStorage.setItem('user', response.data.Username);
                 const data = response.data;
                 console.log('data', data);
-                window.open(`/users/${Username}`, '_self');
+                window.open(`/users/${data.Username}`, '_self');
 
 
             })
