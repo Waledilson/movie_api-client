@@ -67,5 +67,5 @@ MovieView.propTypes = {
         // Genre: PropTypes.object,
         // Director: PropTypes.object,
         // Featured: PropTypes.bool
-    }).isRequired
+    })
 };

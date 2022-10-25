@@ -1,14 +1,9 @@
 import React from 'react';
-//import React, { useState } from 'react';
 import { Card, Container, Col, Row } from 'react-bootstrap';
-
-// import { UserInfo } from './user-info';
 import { FavoriteMovieList } from './favorite-movie-list';
 import UpdateUser from './update-user';
-
 import './profile-view.scss';
 import axios from 'axios';
-// import { useState } from 'react';
 
 
 export class ProfileView extends React.Component {
@@ -100,7 +95,7 @@ export class ProfileView extends React.Component {
                         <Container>
                             <Row xl={3} lg={6} md={12}>
                                 {favoriteMovies.map(movie => (
-                                    <Col xs={12} sm={4} lg={3} key={movie._id}>
+                                    <Col key={movie._id} xs={12} sm={4} lg={3} >
                                         <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
                                     </Col>
                                 ))};

@@ -1,6 +1,5 @@
 import React from 'react'
-// import Link from "react-router-dom";
-import { Container, Col, Row, Button, Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export function FavoriteMovieList({ movie, delFavorite }) {

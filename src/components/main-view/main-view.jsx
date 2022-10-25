@@ -1,12 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
-
-
-import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
-
-import './main-view.scss';
-
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -15,10 +9,9 @@ import { ProfileView } from '../profile-view/profile-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { Navbar } from '../nav-bar/nav-bar';
-
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './main-view.scss';
 
 export class MainView extends React.Component {
     constructor() {
@@ -64,7 +57,7 @@ export class MainView extends React.Component {
         this.getMovies(authData.token);
     }
 
-    onLoggedOut(user) {
+    onLoggedOut() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         this.setState({
@@ -74,14 +67,11 @@ export class MainView extends React.Component {
     };
 
     render() {
-        const { movies, user, handleLogOut } = this.state;
+        const { movies, user } = this.state;
 
         return (
             <Router>
                 <Navbar user={user} />
-                {/* <Link className="text-primary" to={`/users/${user}`} >{user}</Link>
-                <Link className="text-primary" to="/" > Home</Link>
-                <Link className="float-right text-primary" onClick={(e) => { handleLogOut(e) }} to={`/`}>Logout</Link> */}
                 <Row className="main-view justify-content-md-center bg-dark">
                     <Route exact path="/" render={() => {
                         if (!user) return <Col>

@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
-import React, { useState } from 'react';
-
-
-
 import { Link } from "react-router-dom";
-
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
