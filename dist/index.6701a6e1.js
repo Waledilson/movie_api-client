@@ -43350,7 +43350,7 @@ function Navbar(props) {
                 className: "me-auto",
                 __source: {
                     fileName: "src/components/nav-bar/nav-bar.jsx",
-                    lineNumber: 20
+                    lineNumber: 21
                 },
                 __self: this,
                 children: [
@@ -43359,7 +43359,7 @@ function Navbar(props) {
                         href: `/users/${user}`,
                         __source: {
                             fileName: "src/components/nav-bar/nav-bar.jsx",
-                            lineNumber: 21
+                            lineNumber: 22
                         },
                         __self: this,
                         children: "Profile"
@@ -43371,7 +43371,7 @@ function Navbar(props) {
                         onClick: handleLogOut,
                         __source: {
                             fileName: "src/components/nav-bar/nav-bar.jsx",
-                            lineNumber: 22
+                            lineNumber: 23
                         },
                         __self: this,
                         children: "Log out"
