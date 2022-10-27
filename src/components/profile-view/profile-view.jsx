@@ -68,7 +68,7 @@ export class ProfileView extends React.Component {
 
     render() {
         const { favoriteMovies, Username, Email } = this.state;
-        const { user } = localStorage.getItem('user');
+        const user = localStorage.getItem('user');
         return (
             <Container>
                 <Row>

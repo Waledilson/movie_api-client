@@ -42,7 +42,7 @@ export default UpdateUser = (props) => {
     const delUser = (e) => {
         e.preventDefault();
         const token = localStorage.getItem('token');
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user.user}`, {
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((res) => {
