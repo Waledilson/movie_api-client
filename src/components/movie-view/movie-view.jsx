@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 import './movie-view.scss';
 
@@ -8,6 +9,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie, onBackClick } = this.props;
+        console.log('movie', movie);
 
         return (
             <Container>
@@ -31,36 +33,39 @@ export class MovieView extends React.Component {
                 <Row>
                     <Col className="movie-genre">
                         <span className="label text-warning">Genre: </span>
-                        <span className="value text-white">{movie.Genre.Name}</span>
+                        <Link to={`/genres/${movie.Genre.Name}`}>
+                            <span className="director-link link text-primary">{movie.Genre.Name}</span>
+                        </Link>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="movie-director">
                         <span className="label text-warning">Directed by: </span>
-                        <span className="value text-white">{movie.Director.Name}</span>
+                        <Link to={`/directors/${movie.Director.Name}`}>
+                            <span className="director-link link text-primary">{movie.Director.Name}</span>
+                        </Link>
                     </Col>
                 </Row>
                 <Row>
                     <Col className="movie-featured">
                         <span className="label text-warning">Featured: </span>
-                        <span className="value text-white">{movie.Featured}</span>
+                        <span className="value text-white">{movie.Featured.bool}</span>
                     </Col>
                 </Row>
-                <Button onClick={() => {
-                    onBackClick(null);
+                <Button variant="dark text-primary" size="sm" onClick={() => {
+                    onBackClick();
                 }}>Back</Button>
-            </Container>
+            </Container >
         );
     }
 }
 MovieView.propTypes = {
     movie: PropTypes.shape({
         ImagePath: PropTypes.string,
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string,
-        Genre: PropTypes.object,
-        Director: PropTypes.object,
-        Featured: PropTypes.bool
-    }),
-    onBackClick: PropTypes.func.isRequired
+        Title: PropTypes.string,
+        Description: PropTypes.string
+        // Genre: PropTypes.object,
+        // Director: PropTypes.object,
+        // Featured: PropTypes.bool
+    })
 };
