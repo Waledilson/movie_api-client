@@ -4,6 +4,9 @@ import { FavoriteMovieList } from './favorite-movie-list';
 import UpdateUser from './update-user';
 import './profile-view.scss';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { setUser, userFav } from '../../actions/actions';
+
 
 
 export class ProfileView extends React.Component {
@@ -31,7 +34,7 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                this.setState({
+                this.props.setUser({
                     Username: response.data.Username,
                     Email: response.data.Email,
                     Birthday: response.data.Birthday
@@ -40,7 +43,7 @@ export class ProfileView extends React.Component {
                     const movie = this.props.movies.filter(movie => movie._id === movieId);
                     return movie[0];
                 })
-                this.setState({
+                this.props.userFav({
                     favoriteMovies: favMovies
                 });
             })
@@ -58,6 +61,7 @@ export class ProfileView extends React.Component {
         })
             .then((response) => {
                 console.log(response)
+
                 alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
                 this.componentDidMount();
             })
@@ -68,7 +72,7 @@ export class ProfileView extends React.Component {
 
     render() {
         const { favoriteMovies, Username, Email } = this.state;
-        const user = localStorage.getItem('user');
+        const user = this.props;
         return (
             <Container>
                 <Row>
@@ -107,5 +111,15 @@ export class ProfileView extends React.Component {
         );
     }
 };
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+
+}
+
+export default connect(mapStateToProps, { setUser, userFav })
+    (ProfileView);
 
 
