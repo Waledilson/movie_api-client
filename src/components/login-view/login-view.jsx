@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+// import { setUser } from '../../actions/actions';
+// import { connect } from 'react-redux';
 
 import './login-view.scss';
 
@@ -86,3 +88,8 @@ LoginView.propTypes = {
     onLoggedIn: PropTypes.func.isRequired
 }
 
+// const mapStateToProps = state => {
+//     user: state.user
+// };
+
+// export default connect(mapStateToProps, { setUser })(LoginView);
