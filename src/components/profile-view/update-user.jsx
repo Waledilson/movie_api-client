@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { updateUser, deleteUser } from '../../actions/actions';
+// import { updateUser, deleteUser } from '../../actions/actions';
 
 
 export default UpdateUser = (props) => {
@@ -29,7 +29,7 @@ export default UpdateUser = (props) => {
             .then(response => {
                 localStorage.setItem('user', response.data.Username);
                 const data = response.data;
-                updateUser({ ...updateUser, FavoriteMovies });
+                // updateUser({ ...updateUser, value });
                 console.log('data', data);
                 window.open(`/users/${data.Username}`, '_self');
 
@@ -50,7 +50,7 @@ export default UpdateUser = (props) => {
             .then((res) => {
                 console.log('User profile deleted', res)
                 localStorage.clear();
-                deleteUser({});
+                // deleteUser({})
                 window.open('/');
             })
             .catch((error) => {
@@ -89,5 +89,6 @@ export default UpdateUser = (props) => {
         </Form>
     )
 };
+
 
 
