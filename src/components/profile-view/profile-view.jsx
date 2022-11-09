@@ -13,7 +13,7 @@ export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
-
+            user: null,
             favoriteMovies: []
         };
     }
@@ -34,12 +34,12 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                this.props.setUser({ ...setUser, response });
+                this.props.setState(response.data);
                 const favMovies = response.data.FavoriteMovies.map(movieId => {
                     const movie = this.props.movies.filter(movie => movie._id === movieId);
                     return movie[0];
                 })
-                this.setState({
+                this.setFav({
                     favoriteMovies: favMovies
                 });
             })
@@ -110,7 +110,7 @@ export class ProfileView extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        users: state.users,
+        user: state.user,
         movies: state.movies
     };
 

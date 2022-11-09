@@ -1,13 +1,13 @@
 export const SET_MOVIES = 'SET_MOVIES';
 export const SET_FILTER = 'SET_FILTER';
-export const SET_USER = 'SET USER';
-export const CREATE_USER = 'CREATE USER';
-export const LOGIN_USER = 'LOGIN USER';
-export const UPDATE_USER = 'UPDATE USER';
-export const USER_FAV = 'USER FAV';
-export const ADD_FAV = 'ADD FAV';
-export const REMOVE_FAV = 'REMOVE FAV';
-export const DELETE_USER = 'DELETE USER';
+export const SET_USER = 'SET_USER';
+export const CREATE_USER = 'CREATE_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+export const UPDATE_USER = 'UPDATE_USER';
+export const USER_FAV = 'USER_FAV';
+export const ADD_FAV = 'ADD_FAV';
+export const REMOVE_FAV = 'REMOVE_FAV';
+export const DELETE_USER = 'DELETE_USER';
 
 export function setMovies(value) {
     return {
