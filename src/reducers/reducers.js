@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_FILTER, SET_MOVIES, SET_USER, CREATE_USER, LOGIN_USER, UPDATE_USER, USER_FAV, ADD_FAV, REMOVE_FAV, DELETE_USER } from '../actions/actions';
+import { SET_FILTER, SET_MOVIES, SET_USER, CREATE_USER, LOGIN_USER, EDIT_USER, USER_FAV, ADD_FAV, REMOVE_FAV, DELETE_USER } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
     switch (action.type) {
@@ -27,7 +27,7 @@ function user(state = {}, action) {
             return action.value;
         case LOGIN_USER:
             return action.value;
-        case UPDATE_USER:
+        case EDIT_USER:
             return action.value;
         case USER_FAV:
             return action.value;
@@ -42,8 +42,8 @@ function user(state = {}, action) {
         case REMOVE_FAV:
             return {
                 ...state,
-                FavoriteMovies: [
-                    ...state?.FavoriteMovies,
+                favMovies: [
+                    ...state?.favMovies,
                     action.value
                 ]
             }
