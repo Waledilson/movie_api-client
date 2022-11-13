@@ -3,7 +3,7 @@ export const SET_FILTER = 'SET_FILTER';
 export const SET_USER = 'SET_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
-export const UPDATE_USER = 'UPDATE_USER';
+export const EDIT_USER = 'EDIT_USER';
 export const USER_FAV = 'USER_FAV';
 export const ADD_FAV = 'ADD_FAV';
 export const REMOVE_FAV = 'REMOVE_FAV';
@@ -44,9 +44,9 @@ export function loginUser(value) {
     }
 }
 
-export function updateUser(value) {
+export function editUser(value) {
     return {
-        type: UPDATE_USER,
+        type: EDIT_USER,
         value
     }
 }
