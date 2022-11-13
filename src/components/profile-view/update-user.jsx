@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-// import { updateUser, deleteUser } from '../../actions/actions';
+import { connect } from 'react-redux';
+import { editUser, deleteUser } from '../../actions/actions';
 
-
-export default UpdateUser = (props) => {
+const UpdateUser = (props) => {
     const { user } = props;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -27,9 +27,10 @@ export default UpdateUser = (props) => {
             }
         )
             .then(response => {
+                this.props.editUser(response.data);
                 localStorage.setItem('user', response.data.Username);
                 const data = response.data;
-                // updateUser({ ...updateUser, value });
+                updateUser({ ...updateUser, value });
                 console.log('data', data);
                 window.open(`/users/${data.Username}`, '_self');
 
@@ -48,6 +49,7 @@ export default UpdateUser = (props) => {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((res) => {
+                // this.props.deleteUser(response.data);
                 console.log('User profile deleted', res)
                 localStorage.clear();
                 // deleteUser({})
@@ -89,6 +91,18 @@ export default UpdateUser = (props) => {
         </Form>
     )
 };
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+
+}
+
+export default connect(mapStateToProps, { editUser, deleteUser })
+    (UpdateUser);
+
+
 
 
 
