@@ -2,13 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser, loginUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { ProfileView } from '../profile-view/profile-view';
+import ProfileView from '../profile-view/profile-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { Navbar } from '../nav-bar/nav-bar';
@@ -48,14 +48,39 @@ class MainView extends React.Component {
     }
 
     onLoggedIn(authData) {
-        this.props.setUser(authData.user);
         console.log(authData);
-        // this.setState({
-        //     user: authData.user.Username
-        // });
+        this.props.loginUser({
+            user: authData.user.Username
+        });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
+        this.getUser(accessToken);
+
+    }
+
+    getUser = (token) => {
+        const Username = localStorage.getItem('user')
+        axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
+            headers: { Authorization: `Bearer ${token}` },
+        })
+            .then((response) => {
+                this.props.setUser({
+                    Username: response.data.Username,
+                    Email: response.data.Email,
+                    Birthday: response.data.Birthday
+                });
+                const favMovies = response.data.FavoriteMovies.map(movieId => {
+                    const movie = this.props.movies.filter(movie => movie._id === movieId);
+                    return movie[0];
+                })
+                this.setState({
+                    favoriteMovies: favMovies
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     onLoggedOut() {
@@ -130,5 +155,5 @@ let mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, { setMovies })
+export default connect(mapStateToProps, { setUser, setMovies, loginUser })
     (MainView);
