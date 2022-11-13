@@ -4,6 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { addFav } from '../../actions/actions'
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
@@ -20,6 +22,7 @@ export const MovieCard = (props) => {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
+                // this.props.addFav(response.data);
                 console.log(response);
                 alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
             })
@@ -54,3 +57,10 @@ MovieCard.propTypes = {
     }).isRequired
 
 };
+
+const mapStateToProps = state => {
+    return {
+        movies: state.movies
+    };
+}
+export default connect(mapStateToProps, addFav)(MovieCard)
