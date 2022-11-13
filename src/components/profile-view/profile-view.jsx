@@ -5,11 +5,11 @@ import UpdateUser from './update-user';
 import './profile-view.scss';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setUser, userFav } from '../../actions/actions';
+import { removeFav, setUser, userFav } from '../../actions/actions';
 
 
 
-export class ProfileView extends React.Component {
+class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -18,35 +18,35 @@ export class ProfileView extends React.Component {
         };
     }
 
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
-            this.getUser(accessToken);
-        }
-    }
+    // componentDidMount() {
+    //     let accessToken = localStorage.getItem('token');
+    //     if (accessToken !== null) {
+    //         this.setState({
+    //             user: localStorage.getItem('user')
+    //         });
+    //         this.getUser(accessToken);
+    //     }
+    // }
 
-    getUser = (token) => {
-        const Username = localStorage.getItem('user')
-        axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
-            headers: { Authorization: `Bearer ${token}` },
-        })
-            .then((response) => {
-                this.props.setState(response.data);
-                const favMovies = response.data.FavoriteMovies.map(movieId => {
-                    const movie = this.props.movies.filter(movie => movie._id === movieId);
-                    return movie[0];
-                })
-                this.setFav({
-                    favoriteMovies: favMovies
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
+    // getUser = (token) => {
+    //     const Username = localStorage.getItem('user')
+    //     axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
+    //         headers: { Authorization: `Bearer ${token}` },
+    //     })
+    //         .then((response) => {
+    //             this.props.setUser(response.data);
+    //             const favMovies = response.data.FavoriteMovies.map(movieId => {
+    //                 const movie = this.props.movies.filter(movie => movie._id === movieId);
+    //                 return movie[0];
+    //             })
+    //             this.setState({
+    //                 favoriteMovies: favMovies
+    //             });
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // }
 
     delFavorite = (movie) => {
         const token = localStorage.getItem('token');
@@ -56,6 +56,8 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
+                this.props.removeFav(...state,
+                    favMovies, response.data);
                 console.log(response)
 
                 alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
@@ -67,8 +69,8 @@ export class ProfileView extends React.Component {
     }
 
     render() {
-        const { favoriteMovies, Username, Email, user } = this.state;
-        // const user = this.props;
+        const { favoriteMovies, Email } = this.state;
+        const { user, Username } = this.props;
         return (
             <Container>
                 <Row>
@@ -111,12 +113,13 @@ export class ProfileView extends React.Component {
 const mapStateToProps = state => {
     return {
         user: state.user,
-        movies: state.movies
+        movies: state.movies,
+        favMovies: state.favMovies
     };
 
 }
 
-export default connect(mapStateToProps, { setUser, userFav })
+export default connect(mapStateToProps, { userFav, removeFav })
     (ProfileView);
 
 
