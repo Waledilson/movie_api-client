@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+
 
 import './movie-view.scss';
 
@@ -69,3 +71,15 @@ MovieView.propTypes = {
         // Featured: PropTypes.bool
     })
 };
+
+let mapStateToProps = state => {
+
+    return {
+        movies: state.movies,
+        user: state.user,
+        favoriteMovies: state.favoriteMovies
+    };
+}
+
+export default connect(mapStateToProps)
+    (MovieView);
