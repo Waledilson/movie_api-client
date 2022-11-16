@@ -30,7 +30,7 @@ const UpdateUser = (props) => {
                 this.props.editUser(response.data);
                 localStorage.setItem('user', response.data.Username);
                 const data = response.data;
-                updateUser({ ...updateUser, value });
+                editUser({ ...editUser, value });
                 console.log('data', data);
                 window.open(`/users/${data.Username}`, '_self');
 
