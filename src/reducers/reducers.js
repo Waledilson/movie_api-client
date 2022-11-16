@@ -34,16 +34,16 @@ function user(state = {}, action) {
         case ADD_FAV:
             return {
                 ...state,
-                FavoriteMovies: [
-                    ...state?.FavoriteMovies,
+                userFav: [
+                    ...state?.userFav,
                     action.value
                 ]
             }
         case REMOVE_FAV:
             return {
                 ...state,
-                favMovies: [
-                    ...state?.favMovies,
+                userFav: [
+                    ...state?.userFav,
                     action.value
                 ]
             }
