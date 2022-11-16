@@ -5,24 +5,24 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addFav } from '../../actions/actions'
+import { addFav, setUser } from '../../actions/actions'
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
-    const { movie } = props;
+    const { user, movie } = props;
 
 
 
     const addFavorite = (movieId) => {
         const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
+        // const user = localStorage.getItem('user');
         axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
             {},
             {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
-                // this.props.addFav(response.data);
+                addFav(response.data);
                 console.log(response);
                 alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
             })
@@ -60,7 +60,8 @@ MovieCard.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        movies: state.movies
+        movies: state.movies,
+        user: state.user
     };
 }
-export default connect(mapStateToProps, addFav)(MovieCard)
+export default connect(mapStateToProps, { addFav, setUser })(MovieCard)
