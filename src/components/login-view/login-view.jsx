@@ -81,17 +81,21 @@ export function LoginView(props) {
 };
 
 LoginView.propTypes = {
-    user: PropTypes.shape({
-        Username: PropTypes.string,
-        Password: PropTypes.string
-    }),
-    onLoggedIn: PropTypes.func.isRequired
+    username: PropTypes.string,
+    password: PropTypes.string
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         user: state.user
-//     };
-// }
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    };
+}
 
-// export default connect(mapStateToProps, { loginUser })(LoginView);
+export default connect(mapStateToProps)(LoginView);
+
+// const mapDispatchToProps = (dispatch) => ({
+//     handleSubmit: (event) =>
+//         dispatch(handleSubmit(event))
+// });
+
+// export default connect(null, mapDispatchToProps)(LoginView);
