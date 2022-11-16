@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+
 
 export function FavoriteMovieList({ movie, delFavorite }) {
     return (
@@ -16,4 +18,15 @@ export function FavoriteMovieList({ movie, delFavorite }) {
     );
 }
 
+let mapStateToProps = state => {
+
+    return {
+        movies: state.movies,
+        user: state.user,
+        favoriteMovies: state.favoriteMovies
+    };
+}
+
+export default connect(mapStateToProps)
+    (FavoriteMovieList);
 
