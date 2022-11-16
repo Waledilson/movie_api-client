@@ -5,7 +5,7 @@ import UpdateUser from './update-user';
 import './profile-view.scss';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { removeFav, setUser, userFav } from '../../actions/actions';
+import { removeFav, userFav, setUser } from '../../actions/actions';
 
 
 
@@ -17,16 +17,6 @@ class ProfileView extends React.Component {
             favoriteMovies: []
         };
     }
-
-    // componentDidMount() {
-    //     let accessToken = localStorage.getItem('token');
-    //     if (accessToken !== null) {
-    //         this.setState({
-    //             user: localStorage.getItem('user')
-    //         });
-    //         this.getUser(accessToken);
-    //     }
-    // }
 
     // getUser = (token) => {
     //     const Username = localStorage.getItem('user')
@@ -69,8 +59,9 @@ class ProfileView extends React.Component {
     }
 
     render() {
-        const { favoriteMovies, Email } = this.state;
-        const { user, Username } = this.props;
+
+        const { favoriteMovies, user, Username, Email, Birthday } = this.state;
+        // const { user, Username, Email, Birthday } = this.props;
         return (
             <Container>
                 <Row>
@@ -114,12 +105,12 @@ const mapStateToProps = state => {
     return {
         user: state.user,
         movies: state.movies,
-        favMovies: state.favMovies
+        favoriteMovies: state.favoriteMovies
     };
 
 }
 
-export default connect(mapStateToProps, { userFav, removeFav })
+export default connect(mapStateToProps, { userFav, removeFav, setUser })
     (ProfileView);
 
 
