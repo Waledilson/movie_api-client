@@ -2,11 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { setMovies, setUser, loginUser, userFav } from '../../actions/actions';
+import { setMovies, setUser, userFav, removeFav, addFav } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { LoginView } from '../login-view/login-view';
+import LoginView from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
 import ProfileView from '../profile-view/profile-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -15,24 +15,25 @@ import { Navbar } from '../nav-bar/nav-bar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss';
+import { ListGroup } from 'react-bootstrap';
 
 class MainView extends React.Component {
     constructor() {
         super();
-        this.state = {
-            user: null,
-            FavoriteMovies: []
-        }
+        // this.state = {
+        //     user: null
+        // }
     }
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
+            // this.setState({
+            //     user: localStorage.getItem('user')
+            // });
             this.getMovies(accessToken);
             this.getUser(accessToken);
+
         }
     }
 
@@ -55,18 +56,14 @@ class MainView extends React.Component {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                this.props.setUser({
-                    Username: response.data.Username,
-                    Email: response.data.Email,
-                    Birthday: response.data.Birthday
-                });
-                const favMovies = response.data.FavoriteMovies.map(movieId => {
-                    const movie = this.props.movies.filter(movie => movie._id === movieId);
-                    return movie[0];
-                })
-                this.props.userFav({
-                    favoriteMovies: favMovies
-                });
+                this.props.setUser(response.data);
+                // const favMovies = response.data.FavoriteMovies.map(movieId => {
+                //     const movie = this.props.movies.filter(movie => movie._id === movieId);
+                //     return movie[0];
+                // })
+                // this.props.userFav({
+                //     favoriteMovies: favMovies
+                // });
             })
             .catch(function (error) {
                 console.log(error);
@@ -79,6 +76,7 @@ class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
+        // console.clear();
 
     }
 
@@ -91,35 +89,82 @@ class MainView extends React.Component {
         window.open("/", "_self");
     };
 
+    addFavorite = (movie, _id) => {
+        const Username = localStorage.getItem('user')
+
+        // const { Username } = this.props;
+        const token = localStorage.getItem('token');
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie._id}`,
+            {},
+            {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            .then((response) => {
+                addFav(movie._id);
+                console.log(movie._id);
+                alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    delFavorite = (movieId) => {
+        const token = localStorage.getItem('token');
+        const user = localStorage.getItem('user');
+        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`, {
+
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then((response) => {
+                this.props.removeFav(...state,
+                    favMovies, response.data);
+                console.log(response)
+
+                alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
+                this.componentDidMount();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+
+
     render() {
-        let { movies, user } = this.props;
+        const { movies, user, movie } = this.props;
         // let { user } = this.state;
+        const username = user.Username;
         return (
             <Router>
                 <Navbar user={user} />
                 <Row className="main-view justify-content-md-center bg-dark">
                     <Route exact path="/" render={() => {
-                        if (!user) return <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
+                        if (!username) return <Col>
+                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
+
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />
 
                         return <MoviesList movies={movies} />;
                     }} />
                     <Route path="/register" render={() => {
-                        if (user) return <Redirect to="/" />
+                        if (!username) return <Redirect to="/" />
                         return <Col>
                             <RegistrationView />
                         </Col>
                     }} />
                     <Route path="/movies/:movieId" render={({ match, history }) => {
+                        if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
                         return <Col sm={6} md={4} lg={3}>
                             <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
                     <Route path="/directors/:name" render={({ match, history }) => {
-                        if (!user) return <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
+                        if (!username) return <Col>
+                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
@@ -127,8 +172,9 @@ class MainView extends React.Component {
                         </Col>
                     }} />
                     <Route path="/genres/:name" render={({ match, history }) => {
-                        if (!user) return <Col>
-                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                        if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
+                        if (!username) return <Col>
+                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
@@ -136,9 +182,10 @@ class MainView extends React.Component {
                         </Col>
                     }} />
                     <Route path={`/users/${user}`} render={({ history }) => {
-                        if (!user) return <Redirect to="/" />
+                        if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
+                        if (!username) return <Redirect to="/" />
                         return <Col>
-                            <ProfileView Username={Username} user={user} movies={movies} onBackClick={() => history.goBack()} />
+                            <ProfileView user={user} movies={movies} delFavorite={this.delFavorite(movies.id)} onBackClick={() => history.goBack()} />
                         </Col>
                     }} />
                 </Row>
@@ -156,9 +203,11 @@ let mapStateToProps = state => {
     };
 }
 
-export default connect(mapStateToProps, { setUser, setMovies, loginUser, userFav })
+export default connect(mapStateToProps, { setUser, setMovies, userFav, addFav, removeFav })
     (MainView);
 
 
 
-
+// adding a fav movie says 'added to undefined'
+// props looks good for user in console
+// doesnt look like favorites are being added to fav movie list...which makes sense if user is undefined
