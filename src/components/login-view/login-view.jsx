@@ -7,7 +7,7 @@ import { loginUser } from '../../actions/actions';
 
 import './login-view.scss';
 
-export function LoginView(props) {
+function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -85,17 +85,17 @@ LoginView.propTypes = {
     password: PropTypes.string
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user
-    };
-}
+// const mapStateToProps = state => {
+//     return {
+//         user: state.user
+//     };
+// }
 
-export default connect(mapStateToProps)(LoginView);
+// export default connect(mapStateToProps, { loginUser })(LoginView);
 
-// const mapDispatchToProps = (dispatch) => ({
-//     handleSubmit: (event) =>
-//         dispatch(handleSubmit(event))
-// });
+const mapDispatchToProps = (dispatch) => ({
+    handleSubmit: (event) =>
+        dispatch(handleSubmit(event))
+});
 
-// export default connect(null, mapDispatchToProps)(LoginView);
+export default connect(null, mapDispatchToProps)(LoginView);
