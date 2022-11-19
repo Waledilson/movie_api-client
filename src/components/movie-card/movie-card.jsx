@@ -9,27 +9,29 @@ import { addFav, setUser } from '../../actions/actions'
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
-    const { user, movie } = props;
+    const { addFavorite, movie } = props;
 
 
 
-    const addFavorite = (movieId) => {
-        const token = localStorage.getItem('token');
-        // const user = localStorage.getItem('user');
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
-            {},
-            {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            .then((response) => {
-                addFav(response.data);
-                console.log(response);
-                alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+    // const addFavorite = (movieId) => {
+    //     const token = localStorage.getItem('token');
+    //     // const user = localStorage.getItem('user');
+    //     axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
+    //         {},
+    //         {
+    //             headers: { Authorization: `Bearer ${token}` }
+    //         })
+    //         .then((response) => {
+    //             addFav(response.data);
+    //             console.log(response);
+    //             alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+
+
 
     return (
         <Card className="bg-dark flex-fill">
@@ -64,4 +66,4 @@ const mapStateToProps = state => {
         user: state.user
     };
 }
-export default connect(mapStateToProps, { addFav, setUser })(MovieCard)
+export default connect(mapStateToProps, addFav)(MovieCard)
