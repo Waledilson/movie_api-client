@@ -10,13 +10,14 @@ import { removeFav, userFav, setUser } from '../../actions/actions';
 
 
 class ProfileView extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            user: null,
-            favoriteMovies: []
-        };
-    }
+
+    // constructor() {
+    //     super();
+    //     this.state = {
+    //         user: null,
+    //         favoriteMovies: []
+    //     };
+    // }
 
     // getUser = (token) => {
     //     const Username = localStorage.getItem('user')
@@ -38,29 +39,29 @@ class ProfileView extends React.Component {
     //         });
     // }
 
-    delFavorite = (movie) => {
-        const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
-        axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movie._id}`, {
+    // delFavorite = (movie) => {
+    //     const token = localStorage.getItem('token');
+    //     const user = localStorage.getItem('user');
+    //     axios.delete(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movie._id}`, {
 
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then((response) => {
-                this.props.removeFav(...state,
-                    favMovies, response.data);
-                console.log(response)
+    //         headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //         .then((response) => {
+    //             this.props.removeFav(...state,
+    //                 favMovies, response.data);
+    //             console.log(response)
 
-                alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
-                this.componentDidMount();
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+    //             alert(`${movie.Title} has been removed from ${user}\'s favorite movie list!`)
+    //             this.componentDidMount();
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
+    // }
 
     render() {
 
-        const { favoriteMovies, user, Username, Email, Birthday } = this.state;
+        const { favoriteMovies, user, Username, Email, delFavorite } = this.props;
         // const { user, Username, Email, Birthday } = this.props;
         return (
             <Container>
@@ -89,7 +90,7 @@ class ProfileView extends React.Component {
                             <Row xl={3} lg={6} md={12}>
                                 {favoriteMovies.map(movie => (
                                     <Col key={movie._id} xs={12} sm={4} lg={3} >
-                                        <FavoriteMovieList movie={movie} delFavorite={this.delFavorite} />
+                                        <FavoriteMovieList movie={movie} delFavorite={delFavorite} />
                                     </Col>
                                 ))};
                             </Row>
@@ -110,7 +111,7 @@ const mapStateToProps = state => {
 
 }
 
-export default connect(mapStateToProps, { userFav, removeFav, setUser })
+export default connect(mapStateToProps)
     (ProfileView);
 
 
