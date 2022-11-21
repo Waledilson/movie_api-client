@@ -61,7 +61,7 @@ class ProfileView extends React.Component {
 
     render() {
 
-        const { favoriteMovies, user, Username, Email, delFavorite } = this.props;
+        // const { favoriteMovies, user, Username, Email, delFavorite } = this.props;
         // const { user, Username, Email, Birthday } = this.props;
         return (
             <Container>
