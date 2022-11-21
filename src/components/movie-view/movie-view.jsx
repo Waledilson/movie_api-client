@@ -11,7 +11,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie, onBackClick } = this.props;
-        console.log('movie', movie);
+        // console.log('movie', movie);
 
         return (
             <Container>

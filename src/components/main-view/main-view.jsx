@@ -15,25 +15,18 @@ import { Navbar } from '../nav-bar/nav-bar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './main-view.scss';
-import { ListGroup } from 'react-bootstrap';
 
 class MainView extends React.Component {
     constructor() {
         super();
-        // this.state = {
-        //     user: null
-        // }
+
     }
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            // this.setState({
-            //     user: localStorage.getItem('user')
-            // });
             this.getMovies(accessToken);
             this.getUser(accessToken);
-
         }
     }
 
@@ -51,19 +44,14 @@ class MainView extends React.Component {
     }
 
     getUser = (token) => {
-        const Username = localStorage.getItem('user')
+        const { user } = this.props;
+        const Username = this.props.user;
+        // const Username = localStorage.getItem('user')
         axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
                 this.props.setUser(response.data);
-                // const favMovies = response.data.FavoriteMovies.map(movieId => {
-                //     const movie = this.props.movies.filter(movie => movie._id === movieId);
-                //     return movie[0];
-                // })
-                // this.props.userFav({
-                //     favoriteMovies: favMovies
-                // });
             })
             .catch(function (error) {
                 console.log(error);
@@ -76,7 +64,6 @@ class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-        // console.clear();
 
     }
 
@@ -89,19 +76,20 @@ class MainView extends React.Component {
         window.open("/", "_self");
     };
 
-    addFavorite = (movieId) => {
-        const Username = localStorage.getItem('user')
-        // const { Username } = this.props;
+    addFavorite = () => {
+        const { user, movies } = this.props;
+        const movie = movies;
         const token = localStorage.getItem('token');
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`,
+        console.log('movie', movie);
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
             {},
             {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
-                addFav(movieId);
+                addFav(movie._id);
                 console.log(response.data);
-                alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
+                alert(`${movie.Title} has been added to ${user.Username}\'s favorite movie list!`);
             })
             .catch((error) => {
                 console.log(error);
@@ -131,9 +119,8 @@ class MainView extends React.Component {
 
 
     render() {
-        const { movies, user, movieId } = this.props;
-        // let { user } = this.state;
-        const username = user.Username;
+        const { movies, user } = this.props;
+        const username = this.Username;
         return (
             <Router>
                 <Navbar user={user} />
@@ -205,7 +192,3 @@ export default connect(mapStateToProps, { setUser, setMovies, userFav, addFav, r
     (MainView);
 
 
-
-// adding a fav movie says 'added to undefined'
-// props looks good for user in console
-// doesnt look like favorites are being added to fav movie list...which makes sense if user is undefined

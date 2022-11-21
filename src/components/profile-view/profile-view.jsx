@@ -61,7 +61,7 @@ class ProfileView extends React.Component {
 
     render() {
 
-        // const { favoriteMovies, user, Username, Email, delFavorite } = this.props;
+        const { user } = props;
         // const { user, Username, Email, Birthday } = this.props;
         return (
             <Container>
@@ -70,8 +70,8 @@ class ProfileView extends React.Component {
                         <Card className='bg-dark text-warning'>
                             <Card.Body >
                                 <h4>User Information</h4>
-                                <Card.Text /> name: <span className="text-white">{Username}</span>
-                                <Card.Text /> email: <span className="text-white"> {Email}</span>
+                                <Card.Text /> name: <span className="text-white">{user.Username}</span>
+                                <Card.Text /> email: <span className="text-white"> {user.Email}</span>
                             </Card.Body>
                         </Card>
                     </Col>
