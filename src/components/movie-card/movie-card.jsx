@@ -5,31 +5,12 @@ import Card from 'react-bootstrap/Card';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import { addFav, setUser } from '../../actions/actions'
+// import { addFav, setUser } from '../../actions/actions'
 import './movie-card.scss';
 
 export const MovieCard = (props) => {
-    const { addFavorite, movie } = props;
+    const { movie, movieId } = props;
 
-
-
-    // const addFavorite = (movieId) => {
-    //     const token = localStorage.getItem('token');
-    //     // const user = localStorage.getItem('user');
-    //     axios.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
-    //         {},
-    //         {
-    //             headers: { Authorization: `Bearer ${token}` }
-    //         })
-    //         .then((response) => {
-    //             addFav(response.data);
-    //             console.log(response);
-    //             alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
 
 
 
@@ -43,7 +24,7 @@ export const MovieCard = (props) => {
                 <Card.Text className="text-white">{movie.Description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-                <Button className="align-self-end" size="sm" variant="dark text-primary" onClick={() => { addFavorite(movie._id) }}>favorite this!</Button>
+                <Button className="align-self-end" size="sm" variant="dark text-primary" onClick={() => { addFavorite(movieId) }}>favorite this!</Button>
             </Card.Footer>
 
         </Card>
@@ -66,4 +47,11 @@ const mapStateToProps = state => {
         user: state.user
     };
 }
-export default connect(mapStateToProps, addFav)(MovieCard)
+
+const mapDispatchToProps = (dispatch) => ({
+    addFavorite: (event) =>
+        dispatch(addFav(event))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+
