@@ -23004,24 +23004,23 @@ class MainView extends _reactDefault.default.Component {
         });
         window.open("/", "_self");
     }
-    // addFavorite = (movieId) => {
-    //     const Username = localStorage.getItem('user')
-    //     // const { Username } = this.props;
-    //     const token = localStorage.getItem('token');
-    //     axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`,
-    //         {},
-    //         {
-    //             headers: { Authorization: `Bearer ${token}` }
-    //         })
-    //         .then((response) => {
-    //             addFav(movieId);
-    //             console.log(response.data);
-    //             alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-    // }
+    addFavorite = (movieId)=>{
+        const Username = localStorage.getItem('user');
+        // const { Username } = this.props;
+        const token = localStorage.getItem('token');
+        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`, {
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            _actions.addFav(movieId);
+            console.log(response.data);
+            alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    };
     delFavorite = (movieId)=>{
         const token = localStorage.getItem('token');
         const user = localStorage.getItem('user');
@@ -44120,27 +44119,11 @@ var _reactRedux = require("react-redux");
 var _movieCardScss = require("./movie-card.scss");
 const MovieCard = (props)=>{
     const { movie , movieId  } = props;
-    const addFavorite = (movieId1)=>{
-        const token = localStorage.getItem('token');
-        // const user = localStorage.getItem('user');
-        _axiosDefault.default.post(`https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId1}`, {
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            addFav(response.data);
-            console.log(response);
-            alert(`${movie.Title} has been added to ${user}\'s favorite movie list!`);
-        }).catch((error)=>{
-            console.log(error);
-        });
-    };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default, {
         className: "bg-dark flex-fill",
         __source: {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 37
+            lineNumber: 18
         },
         __self: undefined,
         children: [
@@ -44150,14 +44133,14 @@ const MovieCard = (props)=>{
                 src: movie.ImagePath,
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 38
+                    lineNumber: 19
                 },
                 __self: undefined
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Body, {
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 39
+                    lineNumber: 20
                 },
                 __self: undefined,
                 children: [
@@ -44165,7 +44148,7 @@ const MovieCard = (props)=>{
                         to: `/movies/${movie._id}`,
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 40
+                            lineNumber: 21
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
@@ -44173,7 +44156,7 @@ const MovieCard = (props)=>{
                             variant: "link",
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 41
+                                lineNumber: 22
                             },
                             __self: undefined,
                             children: movie.Title
@@ -44183,7 +44166,7 @@ const MovieCard = (props)=>{
                         className: "text-white",
                         __source: {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 43
+                            lineNumber: 24
                         },
                         __self: undefined,
                         children: movie.Description
@@ -44193,7 +44176,7 @@ const MovieCard = (props)=>{
             /*#__PURE__*/ _jsxRuntime.jsx(_cardDefault.default.Footer, {
                 __source: {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 45
+                    lineNumber: 26
                 },
                 __self: undefined,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
@@ -44205,7 +44188,7 @@ const MovieCard = (props)=>{
                     },
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 46
+                        lineNumber: 27
                     },
                     __self: undefined,
                     children: "favorite this!"

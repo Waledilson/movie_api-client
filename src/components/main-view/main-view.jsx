@@ -89,24 +89,23 @@ class MainView extends React.Component {
         window.open("/", "_self");
     };
 
-    addFavorite = (movie, _id) => {
+    addFavorite = (movieId) => {
         const Username = localStorage.getItem('user')
-
         // const { Username } = this.props;
         const token = localStorage.getItem('token');
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie._id}`,
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`,
             {},
             {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
-                addFav(movie._id);
-                console.log(movie._id);
+                addFav(movieId);
+                console.log(response.data);
                 alert(`${movie.Title} has been added to ${Username}\'s favorite movie list!`);
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
     }
 
     delFavorite = (movieId) => {
@@ -132,7 +131,7 @@ class MainView extends React.Component {
 
 
     render() {
-        const { movies, user, movie } = this.props;
+        const { movies, user, movieId } = this.props;
         // let { user } = this.state;
         const username = user.Username;
         return (
@@ -147,7 +146,7 @@ class MainView extends React.Component {
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />
 
-                        return <MoviesList movies={movies} />;
+                        return <MoviesList addFavorite={this.addFavorite()} movies={movies} />;
                     }} />
                     <Route path="/register" render={() => {
                         if (!username) return <Redirect to="/" />
@@ -199,7 +198,6 @@ let mapStateToProps = state => {
     return {
         movies: state.movies,
         user: state.user,
-        favoriteMovies: state.favoriteMovies
     };
 }
 
