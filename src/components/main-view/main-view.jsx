@@ -45,17 +45,24 @@ class MainView extends React.Component {
 
     getUser = (token) => {
         // const user = localStorage.getItem('user');
-        const Username = localStorage.getItem('user')
+        const Username = localStorage.getItem('user');
         axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
-                // console.log(response.data);
-                this.props.setUser(response.data);
-                // this.props.setUser(response.data.Username,
-                //     response.data.Email,
-                //     response.data.Birthday,
-                //     response.data.FavoriteMovies);
+                console.log(
+                    response.data.Username,
+                    response.data.Email,
+                    response.data.Birthday,
+                    response.data.FavoriteMovies
+                );
+                // this.props.setUser(response.data);
+                this.props.setUser(
+                    response.data.Username,
+                    response.data.Email,
+                    response.data.Birthday,
+                    response.data.FavoriteMovies
+                );
             })
             .catch(function (error) {
                 console.log(error);
@@ -119,21 +126,17 @@ class MainView extends React.Component {
             });
     }
 
-    // componentWillUnmount(accessToken) {
-    //     this.getUser(accessToken);
-    // }
-
     render() {
-        const { movies, user } = this.props;
-        const username = this.Username;
+        const { movies } = this.props;
+        const user = localStorage.getItem('user');
         return (
             <Router>
                 <Navbar user={user} />
                 <Row className="main-view justify-content-md-center bg-dark">
                     <Route exact path="/" render={() => {
                         if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
-                        if (!username) return <Col>
-                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
 
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />
@@ -141,7 +144,7 @@ class MainView extends React.Component {
                         return <MoviesList addFavorite={this.addFavorite()} movies={movies} />;
                     }} />
                     <Route path="/register" render={() => {
-                        if (!username) return <Redirect to="/" />
+                        if (!user) return <Redirect to="/" />
                         return <Col>
                             <RegistrationView />
                         </Col>
@@ -154,8 +157,8 @@ class MainView extends React.Component {
                     }} />
                     <Route path="/directors/:name" render={({ match, history }) => {
                         if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
-                        if (!username) return <Col>
-                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
@@ -164,8 +167,8 @@ class MainView extends React.Component {
                     }} />
                     <Route path="/genres/:name" render={({ match, history }) => {
                         if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
-                        if (!username) return <Col>
-                            <LoginView onLoggedIn={username => this.onLoggedIn(username)} />
+                        if (!user) return <Col>
+                            <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                         </Col>
                         if (movies.length === 0) return <div className="main-view" />;
                         return <Col md={8}>
@@ -174,7 +177,7 @@ class MainView extends React.Component {
                     }} />
                     <Route path={`/users/${user}`} render={({ history }) => {
                         if (movies.length === 0 && localStorage.getItem('user')) return <div className="main-view" />;
-                        if (!username) return <Redirect to="/" />
+                        if (!user) return <Redirect to="/" />
                         return <Col>
                             <ProfileView user={user} movies={movies} delFavorite={this.delFavorite(movies.id)} onBackClick={() => history.goBack()} />
                         </Col>

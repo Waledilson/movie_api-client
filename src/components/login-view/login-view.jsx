@@ -47,7 +47,7 @@ function LoginView(props) {
                 .then(response => {
                     const data = response.data;
                     props.onLoggedIn(data);
-                    console.log(data);
+                    // console.log(data);
                 })
                 .catch(e => {
                     console.log('no such user');
@@ -100,3 +100,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(null, mapDispatchToProps)(LoginView);
+
+
+
+// data from onLoggedIn function is good
+// data from getUser function is good
+// how to keep user logged in?

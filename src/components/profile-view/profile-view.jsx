@@ -61,7 +61,7 @@ class ProfileView extends React.Component {
 
     render() {
 
-        const { user } = props;
+        const { user, favoriteMovies } = this.props;
         // const { user, Username, Email, Birthday } = this.props;
         return (
             <Container>
@@ -78,7 +78,7 @@ class ProfileView extends React.Component {
                     <Col xs={12} sm={7} lg={7}>
                         <Card className='bg-dark text-warning'>
                             <Card.Body>
-                                <UpdateUser user={user} Username={Username} />
+                                <UpdateUser user={user} />
                             </Card.Body>
                         </Card>
                     </Col>
