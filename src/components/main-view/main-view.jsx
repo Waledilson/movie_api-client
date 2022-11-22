@@ -44,14 +44,18 @@ class MainView extends React.Component {
     }
 
     getUser = (token) => {
-        const { user } = this.props;
-        const Username = this.props.user;
-        // const Username = localStorage.getItem('user')
+        // const user = localStorage.getItem('user');
+        const Username = localStorage.getItem('user')
         axios.get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
             headers: { Authorization: `Bearer ${token}` },
         })
             .then((response) => {
+                // console.log(response.data);
                 this.props.setUser(response.data);
+                // this.props.setUser(response.data.Username,
+                //     response.data.Email,
+                //     response.data.Birthday,
+                //     response.data.FavoriteMovies);
             })
             .catch(function (error) {
                 console.log(error);
@@ -59,12 +63,11 @@ class MainView extends React.Component {
     }
 
     onLoggedIn(authData) {
-        console.log(authData);
+        // console.log(authData);
         this.props.setUser(authData.user);
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         this.getMovies(authData.token);
-
     }
 
     onLoggedOut() {
@@ -76,18 +79,18 @@ class MainView extends React.Component {
         window.open("/", "_self");
     };
 
-    addFavorite = () => {
+    addFavorite = (movieId) => {
         const { user, movies } = this.props;
         const movie = movies;
         const token = localStorage.getItem('token');
         console.log('movie', movie);
-        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+        axios.post(`https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
             {},
             {
                 headers: { Authorization: `Bearer ${token}` }
             })
             .then((response) => {
-                addFav(movie._id);
+                this.props.addFav(movieId);
                 console.log(response.data);
                 alert(`${movie.Title} has been added to ${user.Username}\'s favorite movie list!`);
             })
@@ -116,7 +119,9 @@ class MainView extends React.Component {
             });
     }
 
-
+    // componentWillUnmount(accessToken) {
+    //     this.getUser(accessToken);
+    // }
 
     render() {
         const { movies, user } = this.props;
