@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import React from 'react';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
+// import { connect } from 'react-redux';
+// import { createUser } from '../../actions/actions';
 
 import './registration-view.scss';
 
@@ -51,6 +53,7 @@ export function RegistrationView(props) {
                 Birthday: birthday
             })
                 .then(response => {
+                    // this.props.createUser(response.data);
                     const data = response.data;
                     console.log(data);
                     alert('Registration successful, please login!');
@@ -100,4 +103,15 @@ export function RegistrationView(props) {
         </Container>
     );
 }
+
+// const mapStateToProps = state => {
+//     return {
+//         user: state.user
+//     };
+
+// }
+
+// export default connect(mapStateToProps, { createUser })
+//     (RegistrationView);
+
 

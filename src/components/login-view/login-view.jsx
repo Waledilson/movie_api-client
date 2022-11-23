@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/actions';
 
 import './login-view.scss';
 
-export function LoginView(props) {
+function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -45,6 +47,7 @@ export function LoginView(props) {
                 .then(response => {
                     const data = response.data;
                     props.onLoggedIn(data);
+                    console.log(data);
                 })
                 .catch(e => {
                     console.log('no such user');
@@ -79,9 +82,21 @@ export function LoginView(props) {
 };
 
 LoginView.propTypes = {
-    user: PropTypes.shape({
-        Username: PropTypes.string,
-        Password: PropTypes.string
-    }),
-    onLoggedIn: PropTypes.func.isRequired
+    username: PropTypes.string,
+    password: PropTypes.string
 }
+
+// const mapStateToProps = state => {
+//     return {
+//         user: state.user
+//     };
+// }
+
+// export default connect(mapStateToProps, { loginUser })(LoginView);
+
+const mapDispatchToProps = (dispatch) => ({
+    handleSubmit: (event) =>
+        dispatch(handleSubmit(event))
+});
+
+export default connect(null, mapDispatchToProps)(LoginView);
