@@ -77,5 +77,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, addFav)(MovieCard);
+export default connect(mapStateToProps, { addFav })(MovieCard);
 // export default MovieCard;
