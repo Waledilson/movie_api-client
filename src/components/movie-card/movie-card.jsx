@@ -5,12 +5,35 @@ import Card from "react-bootstrap/Card";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-// import { addFav, setUser } from '../../actions/actions'
+import { addFav } from "../../actions/actions";
 import "./movie-card.scss";
 
-export const MovieCard = (props) => {
-  const { movie, movieId } = props;
-  //   console.log("movieId", movieId);
+export const MovieCard = () => {
+  const { user, movie, movieId } = this.props;
+  //   const { movie, movieId, addFavorite } = props;
+  console.log("user", user);
+  addFavorite = (movieId) => {
+    // const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        `https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        this.props.addFav(movieId);
+        console.log(response.data);
+        alert(
+          `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <Card className="bg-dark flex-fill">
@@ -39,13 +62,13 @@ export const MovieCard = (props) => {
   );
 };
 
-MovieCard.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-  }).isRequired,
-};
+// MovieCard.propTypes = {
+//   movie: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired,
+//     ImagePath: PropTypes.string.isRequired,
+//   }).isRequired,
+// };
 
 const mapStateToProps = (state) => {
   return {
@@ -54,8 +77,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  addFavorite: (event) => dispatch(addFav(event)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(mapStateToProps, addFav)(MovieCard);
+// export default MovieCard;

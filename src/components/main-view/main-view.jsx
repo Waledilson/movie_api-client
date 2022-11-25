@@ -57,7 +57,6 @@ class MainView extends React.Component {
       })
       .then((response) => {
         this.props.setUser(response.data);
-        // console.log("props", props);
       })
       .catch(function (error) {
         console.log(error);
@@ -81,28 +80,28 @@ class MainView extends React.Component {
     window.open("/", "_self");
   }
 
-  addFavorite = (movieId) => {
-    const { user } = this.props;
-    const token = localStorage.getItem("token");
-    axios
-      .post(
-        `https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
-        {},
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => {
-        this.props.addFav(movieId);
-        console.log(response.data);
-        alert(
-          `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //   addFavorite = (movieId) => {
+  //     const user = localStorage.getItem("user");
+  //     const token = localStorage.getItem("token");
+  //     axios
+  //       .post(
+  //         `https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+  //         {},
+  //         {
+  //           headers: { Authorization: `Bearer ${token}` },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         this.props.addFav(movieId);
+  //         console.log(response.data);
+  //         alert(
+  //           `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
+  //         );
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  //   };
 
   delFavorite = (movieId) => {
     // console.log("props", props);
@@ -152,9 +151,7 @@ class MainView extends React.Component {
                 );
               if (movies.length === 0) return <div className="main-view" />;
 
-              return (
-                <MoviesList addFavorite={this.addFavorite()} movies={movies} />
-              );
+              return <MoviesList movies={movies} />;
             }}
           />
           <Route
@@ -258,7 +255,6 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     movies: state.movies,
     user: state.user,

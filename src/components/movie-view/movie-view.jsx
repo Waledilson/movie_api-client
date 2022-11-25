@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import "./movie-view.scss";
 
-export class MovieView extends React.Component {
+class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
     // console.log('movie', movie);
