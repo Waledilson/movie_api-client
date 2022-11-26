@@ -11,7 +11,7 @@ import {
 } from "../../actions/actions";
 import MoviesList from "../movies-list/movies-list";
 import { MovieCard } from "../movie-card/movie-card";
-import { MovieView } from "../movie-view/movie-view";
+import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
 import ProfileView from "../profile-view/profile-view";
@@ -107,7 +107,7 @@ class MainView extends React.Component {
   //   };
 
   render() {
-    const { movies } = this.props;
+    const { movies, movie } = this.props;
     const user = localStorage.getItem("user");
     // console.log("this.props", this.props);
     return (
@@ -215,11 +215,7 @@ class MainView extends React.Component {
               if (!user) return <Redirect to="/" />;
               return (
                 <Col>
-                  <ProfileView
-                    user={user}
-                    movies={movies}
-                    onBackClick={() => history.goBack()}
-                  />
+                  <ProfileView onBackClick={() => history.goBack()} />
                 </Col>
               );
             }}
