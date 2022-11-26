@@ -80,54 +80,31 @@ class MainView extends React.Component {
     window.open("/", "_self");
   }
 
-  //   addFavorite = (movieId) => {
-  //     const user = localStorage.getItem("user");
+  //   delFavorite = (movieId) => {
+  //     // console.log("props", props);
+
   //     const token = localStorage.getItem("token");
+  //     const user = localStorage.getItem("user");
   //     axios
-  //       .post(
-  //         `https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
-  //         {},
+  //       .delete(
+  //         `https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
   //         {
   //           headers: { Authorization: `Bearer ${token}` },
   //         }
   //       )
   //       .then((response) => {
-  //         this.props.addFav(movieId);
-  //         console.log(response.data);
+  //         this.props.removeFav(...state, favMovies, response.data);
+  //         console.log(response);
+
   //         alert(
-  //           `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
+  //           `${movie.Title} has been removed from ${user}\'s favorite movie list!`
   //         );
+  //         this.componentDidMount();
   //       })
   //       .catch((error) => {
   //         console.log(error);
   //       });
   //   };
-
-  delFavorite = (movieId) => {
-    // console.log("props", props);
-
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    axios
-      .delete(
-        `https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-      .then((response) => {
-        this.props.removeFav(...state, favMovies, response.data);
-        console.log(response);
-
-        alert(
-          `${movie.Title} has been removed from ${user}\'s favorite movie list!`
-        );
-        this.componentDidMount();
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   render() {
     const { movies } = this.props;
@@ -241,7 +218,6 @@ class MainView extends React.Component {
                   <ProfileView
                     user={user}
                     movies={movies}
-                    delFavorite={this.delFavorite(movies.id)}
                     onBackClick={() => history.goBack()}
                   />
                 </Col>
