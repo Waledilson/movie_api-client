@@ -8,23 +8,22 @@ import { connect } from "react-redux";
 import { addFav } from "../../actions/actions";
 import "./movie-card.scss";
 
-export const MovieCard = () => {
-  const { user, movie, movieId } = this.props;
-  //   const { movie, movieId, addFavorite } = props;
-  console.log("user", user);
-  addFavorite = (movieId) => {
-    // const user = localStorage.getItem("user");
+const MovieCard = (props) => {
+  const { movie, user } = props;
+
+  const addFavorite = (movieId) => {
+    const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     axios
       .post(
-        `https://intense-shore-03094.herokuapp.com/users/${user.Username}/movies/${movieId}`,
+        `https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((response) => {
-        this.props.addFav(movieId);
+        addFav(movieId);
         console.log(response.data);
         alert(
           `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
@@ -52,7 +51,7 @@ export const MovieCard = () => {
           size="sm"
           variant="dark text-primary"
           onClick={() => {
-            addFavorite(movieId);
+            addFavorite(movie._id);
           }}
         >
           favorite this!
@@ -62,20 +61,20 @@ export const MovieCard = () => {
   );
 };
 
-// MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     Title: PropTypes.string.isRequired,
-//     Description: PropTypes.string.isRequired,
-//     ImagePath: PropTypes.string.isRequired,
-//   }).isRequired,
-// };
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 const mapStateToProps = (state) => {
+  //   console.log("state", state);
   return {
     movies: state.movies,
     user: state.user,
   };
 };
 
-export default connect(mapStateToProps, { addFav })(MovieCard);
-// export default MovieCard;
+export default connect(mapStateToProps, addFav)(MovieCard);
