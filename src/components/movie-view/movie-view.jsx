@@ -9,7 +9,6 @@ import "./movie-view.scss";
 class MovieView extends React.Component {
   render() {
     const { movie, onBackClick } = this.props;
-    // console.log('movie', movie);
 
     return (
       <Container>

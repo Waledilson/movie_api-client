@@ -6,13 +6,14 @@ import axios from "axios";
 import { removeFav } from "../../actions/actions";
 
 const FavoriteMovieList = (props) => {
-  const { movie } = props;
-  const { ImagePath, _id } = movie;
-  console.log("props", props);
+  const { movie, user } = props;
+  const { ImagePath, _id } = props;
+
+  // console.log("props", props);
 
   delFavorite = (movieId) => {
     const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
+    // const user = localStorage.getItem("user");
     axios
       .delete(
         `https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
@@ -55,7 +56,7 @@ const FavoriteMovieList = (props) => {
 };
 
 let mapStateToProps = (state) => {
-  console.log("state", state);
+  // console.log("state", state);
 
   return {
     movies: state.movies,
