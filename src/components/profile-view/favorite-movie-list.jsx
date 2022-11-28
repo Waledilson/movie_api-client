@@ -6,7 +6,8 @@ import axios from "axios";
 import { removeFav } from "../../actions/actions";
 
 const FavoriteMovieList = (props) => {
-  const movie = props;
+  const { movie } = props;
+  const { ImagePath, _id } = movie;
   console.log("props", props);
 
   delFavorite = (movieId) => {
@@ -37,13 +38,13 @@ const FavoriteMovieList = (props) => {
     <Card className="flex-fill bg-dark text-warning" xs={6} md={6} lg={3}>
       <Card.Body>
         <Link to={`/movies/${movie._id}`}>
-          <Card.Img xs={6} md={3} crossOrigin="true" src={movie.ImagePath} />
+          <Card.Img xs={6} md={3} crossOrigin="true" src={ImagePath} />
         </Link>
         <Button
           variant="dark text-primary"
           size="sm"
           onClick={() => {
-            delFavorite(movie._id);
+            delFavorite(_id);
           }}
         >
           remove from favorites
@@ -63,3 +64,7 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { removeFav })(FavoriteMovieList);
+
+//nothing showing up on favorite movie cards
+//props and state are fine in favmoreie component
+//the whole each child key fuckin bullshit

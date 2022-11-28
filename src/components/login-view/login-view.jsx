@@ -1,90 +1,110 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Form, Button } from 'react-bootstrap';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/actions';
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/actions";
 
-import './login-view.scss';
+import "./login-view.scss";
 
 function LoginView(props) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const [usernameErr, setUsernameErr] = useState('');
-    const [passwordErr, setPasswordErr] = useState('');
+  const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
 
-    const validate = () => {
-        let isReq = true;
-        if (!username) {
-            setUsernameErr('Username Required');
-            isReq = false;
-        } else if (username.length < 5) {
-            setUsernameErr('Username must be 5 characters long');
-            isReq = false;
-        }
-        if (!password) {
-            setPasswordErr('Password Required');
-            isReq = false;
-        } else if (password.length < 6) {
-            setPassword('Password must be 6 characters long');
-            isReq = false;
-        }
-        return isReq;
+  const validate = () => {
+    let isReq = true;
+    if (!username) {
+      setUsernameErr("Username Required");
+      isReq = false;
+    } else if (username.length < 5) {
+      setUsernameErr("Username must be 5 characters long");
+      isReq = false;
     }
+    if (!password) {
+      setPasswordErr("Password Required");
+      isReq = false;
+    } else if (password.length < 6) {
+      setPassword("Password must be 6 characters long");
+      isReq = false;
+    }
+    return isReq;
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const isReq = validate();
+    if (isReq) {
+      /* Send a request to the server for authentication */
+      axios
+        .post("https://intense-shore-03094.herokuapp.com/login", {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          const data = response.data;
+          props.onLoggedIn(data);
+          // console.log(data);
+        })
+        .catch((e) => {
+          console.log("no such user");
+          alert("no such user");
+        });
+    }
+  };
 
+  return (
+    <Form className="bg-dark text-white">
+      <Form.Group controlId="formUsername">
+        <Form.Label className="text-warning">Username:</Form.Label>
+        <Form.Control
+          size="sm"
+          placeholder="Enter username"
+          value={username}
+          type="text"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {/*  */}
+        {usernameErr && <p>{usernameErr}</p>}
+      </Form.Group>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const isReq = validate();
-        if (isReq) {
-            /* Send a request to the server for authentication */
-            axios.post('https://intense-shore-03094.herokuapp.com/login', {
-                Username: username,
-                Password: password,
-            })
-                .then(response => {
-                    const data = response.data;
-                    props.onLoggedIn(data);
-                    // console.log(data);
-                })
-                .catch(e => {
-                    console.log('no such user');
-                    alert('no such user');
-                });
-        }
-    };
-
-    return (
-        <Form className="bg-dark text-white">
-            <Form.Group controlId="formUsername">
-                <Form.Label className="text-warning">Username:</Form.Label>
-                <Form.Control size="sm" placeholder="Enter username" value={username} type="text" onChange={e => setUsername(e.target.value)} />
-                { /*  */}
-                {usernameErr && <p>{usernameErr}</p>}
-            </Form.Group>
-
-            <Form.Group controlId="formPassword">
-                <Form.Label className="text-warning">Password:</Form.Label>
-                <Form.Control size="sm" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
-                {/*  */}
-                {passwordErr && <p>{passwordErr}</p>}
-            </Form.Group>
-            <Button className="text-primary" variant="dark" type="submit" onClick={handleSubmit}>
-                Submit
-            </Button>
-            <Button className="float-right text-primary" variant="dark" type="button" href="/register">
-                Register
-            </Button>
-        </Form>
-    )
-};
+      <Form.Group controlId="formPassword">
+        <Form.Label className="text-warning">Password:</Form.Label>
+        <Form.Control
+          size="sm"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {/*  */}
+        {passwordErr && <p>{passwordErr}</p>}
+      </Form.Group>
+      <Button
+        className="text-primary"
+        variant="dark"
+        type="submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+      <Button
+        className="float-right text-primary"
+        variant="dark"
+        type="button"
+        href="/register"
+      >
+        Register
+      </Button>
+    </Form>
+  );
+}
 
 LoginView.propTypes = {
-    username: PropTypes.string,
-    password: PropTypes.string
-}
+  username: PropTypes.string,
+  password: PropTypes.string,
+};
 
 // const mapStateToProps = state => {
 //     return {
@@ -95,14 +115,7 @@ LoginView.propTypes = {
 // export default connect(mapStateToProps, { loginUser })(LoginView);
 
 const mapDispatchToProps = (dispatch) => ({
-    handleSubmit: (event) =>
-        dispatch(handleSubmit(event))
+  handleSubmit: (event) => dispatch(handleSubmit(event)),
 });
 
 export default connect(null, mapDispatchToProps)(LoginView);
-
-
-
-// data from onLoggedIn function is good
-// data from getUser function is good
-// how to keep user logged in?

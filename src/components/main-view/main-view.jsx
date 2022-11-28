@@ -13,7 +13,7 @@ import MoviesList from "../movies-list/movies-list";
 import { MovieCard } from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
-import { RegistrationView } from "../registration-view/registration-view";
+import RegistrationView from "../registration-view/registration-view";
 import ProfileView from "../profile-view/profile-view";
 import { GenreView } from "../genre-view/genre-view";
 import { DirectorView } from "../director-view/director-view";
@@ -43,6 +43,7 @@ class MainView extends React.Component {
       .then((response) => {
         //assign the result to the state
         this.props.setMovies(response.data);
+        // console.log("this.props", this.props);
       })
       .catch(function (error) {
         console.log(error);
@@ -107,7 +108,7 @@ class MainView extends React.Component {
   //   };
 
   render() {
-    const { movies, movie } = this.props;
+    const { movies } = this.props;
     const user = localStorage.getItem("user");
     // console.log("this.props", this.props);
     return (

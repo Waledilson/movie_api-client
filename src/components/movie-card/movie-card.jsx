@@ -12,6 +12,7 @@ const MovieCard = (props) => {
   const { movie, user } = props;
 
   const addFavorite = (movieId) => {
+    console.log("props", props);
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
     axios
@@ -23,7 +24,7 @@ const MovieCard = (props) => {
         }
       )
       .then((response) => {
-        addFav(movieId);
+        addFav(response.data);
         console.log(response.data);
         alert(
           `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
@@ -70,11 +71,10 @@ MovieCard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
   return {
     movies: state.movies,
     user: state.user,
   };
 };
 
-export default connect(mapStateToProps, addFav)(MovieCard);
+export default connect(mapStateToProps, { addFav })(MovieCard);
