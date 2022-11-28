@@ -70,7 +70,7 @@ MovieCard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  //   console.log("state", state);
+  console.log("state", state);
   return {
     movies: state.movies,
     user: state.user,

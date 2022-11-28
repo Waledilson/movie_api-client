@@ -3,10 +3,11 @@ import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
+import { removeFav } from "../../actions/actions";
 
 const FavoriteMovieList = (props) => {
-  const { movie } = props;
-  // console.log("props", props);
+  const movie = props;
+  console.log("props", props);
 
   delFavorite = (movieId) => {
     const token = localStorage.getItem("token");
@@ -42,7 +43,7 @@ const FavoriteMovieList = (props) => {
           variant="dark text-primary"
           size="sm"
           onClick={() => {
-            delFavorite(movie);
+            delFavorite(movie._id);
           }}
         >
           remove from favorites
@@ -54,10 +55,11 @@ const FavoriteMovieList = (props) => {
 
 let mapStateToProps = (state) => {
   console.log("state", state);
+
   return {
     movies: state.movies,
     user: state.user,
   };
 };
 
-export default connect(mapStateToProps)(FavoriteMovieList);
+export default connect(mapStateToProps, { removeFav })(FavoriteMovieList);

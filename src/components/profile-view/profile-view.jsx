@@ -9,9 +9,8 @@ import { removeFav, userFav, setUser } from "../../actions/actions";
 import { Component } from "react";
 
 const ProfileView = (props) => {
-  const { movie, user, FavoriteMovies } = props;
+  const { user, movie } = props;
 
-  console.log("props", props);
   return (
     <Container>
       <Row>
@@ -41,10 +40,7 @@ const ProfileView = (props) => {
             <Row xl={3} lg={6} md={12}>
               {user.FavoriteMovies.map((movie) => (
                 <Col key={movie._id} xs={12} sm={4} lg={3}>
-                  <FavoriteMovieList
-                    movie={movie}
-                    //   delFavorite={delFavorite}
-                  />
+                  <FavoriteMovieList />
                 </Col>
               ))}
               ;
@@ -58,7 +54,7 @@ const ProfileView = (props) => {
 // }
 
 const mapStateToProps = (state) => {
-  console.log("state", state);
+  //   console.log("state", state);
   return {
     user: state.user,
     movies: state.movies,
