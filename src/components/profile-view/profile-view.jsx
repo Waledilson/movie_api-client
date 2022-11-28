@@ -38,7 +38,7 @@ const ProfileView = (props) => {
           </Col>
           <Container>
             <Row xl={3} lg={6} md={12}>
-              {user.FavoriteMovies?.map((movie) => (
+              {user.FavoriteMovies.map((movie) => (
                 <Col key={movie._id} xs={12} sm={4} lg={3}>
                   <FavoriteMovieList movie={movie} />
                 </Col>
