@@ -6,29 +6,27 @@ import axios from "axios";
 import { removeFav } from "../../actions/actions";
 
 const FavoriteMovieList = (props) => {
-  const { movie, user } = props;
-  const { ImagePath, _id } = props;
+  const { movie } = props;
 
-  // console.log("props", props);
+  console.log("props", props);
 
-  delFavorite = (movieId) => {
+  delFavorite = (movie) => {
     const token = localStorage.getItem("token");
-    // const user = localStorage.getItem("user");
+    const Username = localStorage.getItem("user");
     axios
       .delete(
-        `https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
+        `https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((response) => {
-        removeFav(...state, favMovies, response.data);
+        removeFav(response.data);
         console.log(response);
 
         alert(
-          `${movie.Title} has been removed from ${user}\'s favorite movie list!`
+          `${movie.Title} has been removed from ${Username}\'s favorite movie list!`
         );
-        this.componentDidMount();
       })
       .catch((error) => {
         console.log(error);
@@ -39,13 +37,13 @@ const FavoriteMovieList = (props) => {
     <Card className="flex-fill bg-dark text-warning" xs={6} md={6} lg={3}>
       <Card.Body>
         <Link to={`/movies/${movie._id}`}>
-          <Card.Img xs={6} md={3} crossOrigin="true" src={ImagePath} />
+          <Card.Img xs={6} md={3} crossOrigin="true" src={movie.ImagePath} />
         </Link>
         <Button
           variant="dark text-primary"
           size="sm"
           onClick={() => {
-            delFavorite(_id);
+            delFavorite(movie);
           }}
         >
           remove from favorites

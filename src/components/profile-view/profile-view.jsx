@@ -9,7 +9,7 @@ import { removeFav, userFav, setUser } from "../../actions/actions";
 import { Component } from "react";
 
 const ProfileView = (props) => {
-  const { movie, user, FavoriteMovies } = props;
+  const { user, movies } = props;
 
   return (
     <Container>
@@ -38,11 +38,14 @@ const ProfileView = (props) => {
           </Col>
           <Container>
             <Row xl={3} lg={6} md={12}>
-              {user.FavoriteMovies.map((movie) => (
-                <Col key={movie._id} xs={12} sm={4} lg={3}>
-                  <FavoriteMovieList movie={movie} />
-                </Col>
-              ))}
+              {user.FavoriteMovies &&
+                movies
+                  .filter((movie) => user.FavoriteMovies.includes(movie._id))
+                  .map((movie) => (
+                    <Col key={movie._id} xs={12} sm={4} lg={3}>
+                      <FavoriteMovieList movie={movie} />
+                    </Col>
+                  ))}
               ;
             </Row>
           </Container>
