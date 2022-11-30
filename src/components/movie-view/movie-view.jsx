@@ -78,9 +78,6 @@ MovieView.propTypes = {
     ImagePath: PropTypes.string,
     Title: PropTypes.string,
     Description: PropTypes.string,
-    // Genre: PropTypes.object,
-    // Director: PropTypes.object,
-    // Featured: PropTypes.bool
   }),
 };
 

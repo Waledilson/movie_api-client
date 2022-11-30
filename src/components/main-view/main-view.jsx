@@ -15,8 +15,8 @@ import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
 import RegistrationView from "../registration-view/registration-view";
 import ProfileView from "../profile-view/profile-view";
-import { GenreView } from "../genre-view/genre-view";
-import { DirectorView } from "../director-view/director-view";
+import GenreView from "../genre-view/genre-view";
+import DirectorView from "../director-view/director-view";
 import { Navbar } from "../nav-bar/nav-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -80,32 +80,6 @@ class MainView extends React.Component {
     });
     window.open("/", "_self");
   }
-
-  //   delFavorite = (movieId) => {
-  //     // console.log("props", props);
-
-  //     const token = localStorage.getItem("token");
-  //     const user = localStorage.getItem("user");
-  //     axios
-  //       .delete(
-  //         `https://intense-shore-03094.herokuapp.com/users/${user}/movies/${movieId}`,
-  //         {
-  //           headers: { Authorization: `Bearer ${token}` },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         this.props.removeFav(...state, favMovies, response.data);
-  //         console.log(response);
-
-  //         alert(
-  //           `${movie.Title} has been removed from ${user}\'s favorite movie list!`
-  //         );
-  //         this.componentDidMount();
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   };
 
   render() {
     const { movies } = this.props;

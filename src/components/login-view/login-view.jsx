@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/actions";
 
 import "./login-view.scss";
 
@@ -106,16 +105,10 @@ LoginView.propTypes = {
   password: PropTypes.string,
 };
 
-// const mapStateToProps = state => {
-//     return {
-//         user: state.user
-//     };
-// }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
 
-// export default connect(mapStateToProps, { loginUser })(LoginView);
-
-const mapDispatchToProps = (dispatch) => ({
-  handleSubmit: (event) => dispatch(handleSubmit(event)),
-});
-
-export default connect(null, mapDispatchToProps)(LoginView);
+export default connect(mapStateToProps)(LoginView);

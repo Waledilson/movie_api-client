@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -10,7 +11,7 @@ const FavoriteMovieList = (props) => {
 
   console.log("props", props);
 
-  delFavorite = (movie) => {
+  const delFavorite = (movie) => {
     const token = localStorage.getItem("token");
     const Username = localStorage.getItem("user");
     axios
@@ -53,6 +54,12 @@ const FavoriteMovieList = (props) => {
   );
 };
 
+FavoriteMovieList.propTypes = {
+  movie: PropTypes.shape({
+    ImagePath: PropTypes.string,
+  }),
+};
+
 let mapStateToProps = (state) => {
   // console.log("state", state);
 
@@ -63,7 +70,3 @@ let mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, { removeFav })(FavoriteMovieList);
-
-//nothing showing up on favorite movie cards
-//props and state are fine in favmoreie component
-//the whole each child key fuckin bullshit

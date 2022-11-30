@@ -3,10 +3,7 @@ import { Card, Container, Col, Row } from "react-bootstrap";
 import FavoriteMovieList from "./favorite-movie-list";
 import UpdateUser from "./update-user";
 import "./profile-view.scss";
-import axios from "axios";
 import { connect } from "react-redux";
-import { removeFav, userFav, setUser } from "../../actions/actions";
-import { Component } from "react";
 
 const ProfileView = (props) => {
   const { user, movies } = props;
@@ -46,7 +43,6 @@ const ProfileView = (props) => {
                       <FavoriteMovieList movie={movie} />
                     </Col>
                   ))}
-              ;
             </Row>
           </Container>
         </Col>
@@ -54,10 +50,8 @@ const ProfileView = (props) => {
     </Container>
   );
 };
-// }
 
 const mapStateToProps = (state) => {
-  //   console.log("state", state);
   return {
     user: state.user,
     movies: state.movies,
@@ -65,6 +59,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(ProfileView);
-
-//favoriteMovies show up when i delete curly braces from around the favorite-movie-list component import on the profile view.
-//but if refresh the page it doesnt work again. why????

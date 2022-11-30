@@ -11,7 +11,6 @@ import {
   Row,
 } from "react-bootstrap";
 import { connect } from "react-redux";
-import { createUser } from "../../actions/actions";
 
 import "./registration-view.scss";
 
@@ -68,7 +67,6 @@ const RegistrationView = (props) => {
           Birthday: birthday,
         })
         .then((response) => {
-          createUser(response.data);
           const data = response.data;
           console.log(data);
           alert("Registration successful, please login!");
@@ -161,6 +159,4 @@ mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { createUser })(RegistrationView);
-
-// export default RegistrationView;
+export default connect(mapStateToProps)(RegistrationView);

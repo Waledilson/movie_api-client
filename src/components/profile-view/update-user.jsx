@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { editUser, deleteUser } from "../../actions/actions";
 
 const UpdateUser = (props) => {
-  const { user } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -48,8 +47,9 @@ const UpdateUser = (props) => {
   const delUser = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("token");
+    const Username = localStorage.getItem("user");
     axios
-      .delete(`https://intense-shore-03094.herokuapp.com/users/${user}`, {
+      .delete(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
