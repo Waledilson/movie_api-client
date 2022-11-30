@@ -36,7 +36,6 @@ function LoginView(props) {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
-      /* Send a request to the server for authentication */
       axios
         .post("https://intense-shore-03094.herokuapp.com/login", {
           Username: username,
@@ -45,7 +44,7 @@ function LoginView(props) {
         .then((response) => {
           const data = response.data;
           props.onLoggedIn(data);
-          // console.log(data);
+          console.log(data);
         })
         .catch((e) => {
           console.log("no such user");

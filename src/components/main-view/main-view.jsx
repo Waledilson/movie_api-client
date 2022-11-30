@@ -41,9 +41,7 @@ class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        //assign the result to the state
         this.props.setMovies(response.data);
-        // console.log("this.props", this.props);
       })
       .catch(function (error) {
         console.log(error);
@@ -84,7 +82,6 @@ class MainView extends React.Component {
   render() {
     const { movies } = this.props;
     const user = localStorage.getItem("user");
-    // console.log("this.props", this.props);
     return (
       <Router>
         <Navbar user={user} />

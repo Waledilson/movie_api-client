@@ -61,8 +61,6 @@ FavoriteMovieList.propTypes = {
 };
 
 let mapStateToProps = (state) => {
-  // console.log("state", state);
-
   return {
     movies: state.movies,
     user: state.user,
