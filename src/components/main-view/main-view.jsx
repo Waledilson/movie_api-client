@@ -186,7 +186,10 @@ class MainView extends React.Component {
               if (!user) return <Redirect to="/" />;
               return (
                 <Col>
-                  <ProfileView onBackClick={() => history.goBack()} />
+                  <ProfileView
+                    getUser={(token) => this.getUser(token)}
+                    onBackClick={() => history.goBack()}
+                  />
                 </Col>
               );
             }}

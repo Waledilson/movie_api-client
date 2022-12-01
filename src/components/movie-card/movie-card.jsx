@@ -36,13 +36,18 @@ const MovieCard = (props) => {
   };
 
   return (
-    <Card className="bg-dark flex-fill">
-      <Card.Img crossOrigin="true" variant="top" src={movie.ImagePath} />
-      <Card.Body>
+    <Card className="bg-dark h-100">
+      <Card.Img
+        className="movie-cover"
+        crossOrigin="true"
+        variant="top"
+        src={movie.ImagePath}
+      />
+      <Card.Body className="flex-fill">
         <Link to={`/movies/${movie._id}`}>
-          <Button className="text-warning" variant="link">
+          <Card.Title className="text-warning align-center" variant="link">
             {movie.Title}
-          </Button>
+          </Card.Title>
         </Link>
         <Card.Text className="text-white">{movie.Description}</Card.Text>
       </Card.Body>

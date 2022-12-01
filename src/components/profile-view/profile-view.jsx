@@ -6,7 +6,7 @@ import "./profile-view.scss";
 import { connect } from "react-redux";
 
 const ProfileView = (props) => {
-  const { user, movies } = props;
+  const { user, movies, getUser } = props;
 
   return (
     <Container>
@@ -40,7 +40,7 @@ const ProfileView = (props) => {
                   .filter((movie) => user.FavoriteMovies.includes(movie._id))
                   .map((movie) => (
                     <Col key={movie._id} xs={12} sm={4} lg={3}>
-                      <FavoriteMovieList movie={movie} />
+                      <FavoriteMovieList getUser={getUser} movie={movie} />
                     </Col>
                   ))}
             </Row>

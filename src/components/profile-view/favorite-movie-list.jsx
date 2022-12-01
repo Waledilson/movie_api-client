@@ -7,9 +7,7 @@ import axios from "axios";
 import { removeFav } from "../../actions/actions";
 
 const FavoriteMovieList = (props) => {
-  const { movie } = props;
-
-  console.log("props", props);
+  const { movie, getUser } = props;
 
   const delFavorite = (movie) => {
     const token = localStorage.getItem("token");
@@ -22,9 +20,9 @@ const FavoriteMovieList = (props) => {
         }
       )
       .then((response) => {
-        removeFav(response.data);
+        props.removeFav(response.data);
         console.log(response);
-
+        getUser(token);
         alert(
           `${movie.Title} has been removed from ${Username}\'s favorite movie list!`
         );
@@ -61,6 +59,7 @@ FavoriteMovieList.propTypes = {
 };
 
 let mapStateToProps = (state) => {
+  console.log("state", state);
   return {
     movies: state.movies,
     user: state.user,
