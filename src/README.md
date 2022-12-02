@@ -4,7 +4,7 @@ Martini Shot is an app designed as a repository for a few of my favorite movies.
 
 The building process of the app included building the entire back-end with authentication and authorization that included JWTtoken, CORS and Passport.
 
-To make this app I used the following:
+To make this app I used the following:<br>
 Node.js<br>
 React<br>
 Bootstrap<br>
