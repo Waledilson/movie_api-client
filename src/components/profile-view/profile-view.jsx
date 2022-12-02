@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Card, Container, Col, Row } from "react-bootstrap";
 import FavoriteMovieList from "./favorite-movie-list";
 import UpdateUser from "./update-user";
@@ -49,6 +50,18 @@ const ProfileView = (props) => {
       </Row>
     </Container>
   );
+};
+
+ProfileView.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    Username: PropTypes.string,
+    Email: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => {
