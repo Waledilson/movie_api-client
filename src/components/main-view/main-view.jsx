@@ -21,6 +21,7 @@ import { Navbar } from "../nav-bar/nav-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./main-view.scss";
+import { MOVIE_API_URL } from "../../config";
 
 class MainView extends React.Component {
   constructor() {
@@ -37,7 +38,7 @@ class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get(`https://intense-shore-03094.herokuapp.com/movies`, {
+      .get(`${MOVIE_API_URL}/movies`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -51,7 +52,7 @@ class MainView extends React.Component {
   getUser = (token) => {
     const Username = localStorage.getItem("user");
     axios
-      .get(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
+      .get(`${MOVIE_API_URL}/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
