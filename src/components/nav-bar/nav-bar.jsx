@@ -1,6 +1,8 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { connect } from 'react-redux';
+
 
 export function Navbar(props) {
     const { user } = props;
@@ -25,3 +27,15 @@ export function Navbar(props) {
         </Navbar>
     );
 }
+
+let mapStateToProps = state => {
+
+    return {
+        movies: state.movies,
+        user: state.user,
+
+    };
+}
+
+export default connect(mapStateToProps)
+    (Navbar);
