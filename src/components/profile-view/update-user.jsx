@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { editUser, deleteUser } from "../../actions/actions";
+import { MOVIE_API_URL } from "../../config";
 
 const UpdateUser = (props) => {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ const UpdateUser = (props) => {
     const Username = localStorage.getItem("user");
     axios
       .put(
-        `https://intense-shore-03094.herokuapp.com/users/${Username}`,
+        `${MOVIE_API_URL}/users/${Username}`,
         {
           Username: username,
           Password: password,
@@ -49,7 +50,7 @@ const UpdateUser = (props) => {
     const token = localStorage.getItem("token");
     const Username = localStorage.getItem("user");
     axios
-      .delete(`https://intense-shore-03094.herokuapp.com/users/${Username}`, {
+      .delete(`${MOVIE_API_URL}/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import { removeFav } from "../../actions/actions";
+import { MOVIE_API_URL } from "../../config";
 
 const FavoriteMovieList = (props) => {
   const { movie, getUser } = props;
@@ -13,12 +14,9 @@ const FavoriteMovieList = (props) => {
     const token = localStorage.getItem("token");
     const Username = localStorage.getItem("user");
     axios
-      .delete(
-        `https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movie._id}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .delete(`${MOVIE_API_URL}/users/${Username}/movies/${movie._id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         props.removeFav(response.data);
         console.log(response);
