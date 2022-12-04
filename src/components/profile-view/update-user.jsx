@@ -67,7 +67,7 @@ const UpdateUser = (props) => {
 
   return (
     <Form className="profile-form bg-dark text-warning">
-      <h4>Want to change some info??</h4>
+      <h4>Want to change some info?</h4>
       <Form.Group>
         <Form.Label>Username:</Form.Label>
         <Form.Control
