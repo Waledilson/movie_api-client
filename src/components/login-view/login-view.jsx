@@ -5,6 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import "./login-view.scss";
+import { MOVIE_API_URL } from "../../config";
 
 function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -37,7 +38,7 @@ function LoginView(props) {
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://intense-shore-03094.herokuapp.com/login", {
+        .post(`${MOVIE_API_URL}/login`, {
           Username: username,
           Password: password,
         })

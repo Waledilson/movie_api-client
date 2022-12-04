@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { addFav } from "../../actions/actions";
 import "./movie-card.scss";
+import { MOVIE_API_URL } from "../../config";
 
 const MovieCard = (props) => {
   const { movie, user } = props;
@@ -17,7 +18,7 @@ const MovieCard = (props) => {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `https://intense-shore-03094.herokuapp.com/users/${Username}/movies/${movieId}`,
+        `${MOVIE_API_URL}/users/${Username}/movies/${movieId}`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

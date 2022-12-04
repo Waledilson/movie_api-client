@@ -11,6 +11,7 @@ import {
   Row,
 } from "react-bootstrap";
 import { connect } from "react-redux";
+import { MOVIE_API_URL } from "../../config";
 
 import "./registration-view.scss";
 
@@ -60,7 +61,7 @@ const RegistrationView = (props) => {
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://intense-shore-03094.herokuapp.com/users", {
+        .post(`${MOVIE_API_URL}/users`, {
           Username: username,
           Password: password,
           Email: email,
