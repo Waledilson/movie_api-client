@@ -54,10 +54,8 @@ const UpdateUser = (props) => {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
-        // this.props.deleteUser(response.data);
         console.log("User profile deleted", res);
         localStorage.clear();
-        // deleteUser({})
         window.open("/");
       })
       .catch((error) => {
