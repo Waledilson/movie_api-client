@@ -53,11 +53,6 @@ const ProfileView = (props) => {
 };
 
 ProfileView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired,
-    ImagePath: PropTypes.string.isRequired,
-  }).isRequired,
   user: PropTypes.shape({
     Username: PropTypes.string,
     Email: PropTypes.string,
