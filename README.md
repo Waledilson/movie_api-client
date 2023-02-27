@@ -17,4 +17,11 @@ Axios<br>
 Heroku<br>
 Javascript<br>
 HTML<br>
-CSS
+CSS<br>
+<br>
+<br>
+<img src="screenshots-for-readme/myflix-react-ss1.png">
+<br>
+<img src="screenshots-for-readme/myflix-react-ss2.png">
+<br>
+<img src="screenshots-for-readme/myflix-react-ss3.png">
