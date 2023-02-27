@@ -1,29 +1,89 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addFav } from "../../actions/actions";
+import "./movie-card.scss";
+import { MOVIE_API_URL } from "../../config";
 
-export class MovieCard extends React.Component {
-    render() {
-        const { movie, onMovieClick } = this.props;
+const MovieCard = (props) => {
+  const { movie, user } = props;
 
-        return (
-            <Card>
-                <Card.Img variant="top" src={movie.ImagePath} />
-                <Card.Body>
-                    <Card.Title>{movie.Title}</Card.Title>
-                    <Card.Text>{movie.Description}</Card.Text>
-                    <Button onClick={() => onMovieClick(movie)} variant="link">Open</Button>
-                </Card.Body>
-            </Card>
+  const addFavorite = (movieId) => {
+    console.log("props", props);
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    axios
+      .post(
+        `${MOVIE_API_URL}/users/${Username}/movies/${movieId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        addFav(response.data);
+        console.log(response.data);
+        alert(
+          `${movie.Title} has been added to ${user.Username}\'s favorite movie list!`
         );
-    }
-}
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired,
-        ImagePath: PropTypes.string.isRequired
-    }).isRequired,
-    onMovieClick: PropTypes.func.isRequired
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  return (
+    <Card className="bg-dark h-100">
+      <Card.Img
+        className="movie-cover"
+        crossOrigin="true"
+        variant="top"
+        src={movie.ImagePath}
+      />
+      <Card.Body className="flex-fill">
+        <Link to={`/movies/${movie._id}`}>
+          <Card.Title className="text-warning align-center" variant="link">
+            {movie.Title}
+          </Card.Title>
+        </Link>
+        <Card.Text className="text-white">{movie.Description}</Card.Text>
+      </Card.Body>
+      <Card.Footer>
+        <Button
+          className="align-self-end"
+          size="sm"
+          variant="dark text-primary"
+          onClick={() => {
+            addFavorite(movie._id);
+          }}
+        >
+          favorite this!
+        </Button>
+      </Card.Footer>
+    </Card>
+  );
 };
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    Username: PropTypes.string,
+  }).isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { addFav })(MovieCard);
