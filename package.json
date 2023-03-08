@@ -5,7 +5,7 @@
   "default": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "src/index.html"
+    "start": "dist/index.html"
   },
   "repository": {
     "type": "git",
