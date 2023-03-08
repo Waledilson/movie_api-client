@@ -5,7 +5,7 @@
   "default": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html && parcel watch src/index.html"
+    "start": "parcel src/index.html && parcel watch src/index.html && gh-pages dist/index.html"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "@types/react": "^18.0.17",
-    "@types/react-dom": "^18.0.6"
+    "@types/react-dom": "^18.0.6",
+    "buffer": "^5.7.1",
+    "process": "^0.11.10"
   }
 }
