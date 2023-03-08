@@ -2,10 +2,10 @@
   "name": "movie_api-client",
   "version": "1.0.0",
   "description": "",
-  "default": "src/index.html",
+  "default": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html && parcel watch src/index.html"
+    "start": "parcel src/index.html && parcel watch index.html"
   },
   "repository": {
     "type": "git",
