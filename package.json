@@ -4,8 +4,6 @@
   "description": "",
   "default": "src/index.html",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "dist/index.html"
   },
@@ -22,6 +20,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "gh-pages": "^5.0.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.5.0",
