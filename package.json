@@ -4,8 +4,11 @@
   "description": "",
   "default": "src/index.html",
   "scripts": {
+    "build": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html && parcel watch src/index.html"
+    "start": "dist/index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -16,10 +19,11 @@
   "bugs": {
     "url": "https://github.com/Waledilson/movie_api-client/issues"
   },
-  "homepage": "https://github.com/Waledilson/movie_api-client#readme",
+  "homepage": "https://waledilson.github.io/movie_api-client",
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "gh-pages": "^5.0.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.5.0",
