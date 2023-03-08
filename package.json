@@ -2,13 +2,13 @@
   "name": "movie_api-client",
   "version": "1.0.0",
   "description": "",
-  "default": "src/index.html",
+  "default": "dist/index.html",
   "homepage": "https://waledilson.github.io/movie_api-client",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "src/index.html"
+    "start": "dist/index.html"
   },
   "repository": {
     "type": "git",
