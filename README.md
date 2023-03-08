@@ -14,7 +14,7 @@ Redux<br>
 Parcel<br>
 MongoDB<br>
 Axios<br>
-Heroku<br>
+Railway<br>
 Javascript<br>
 HTML<br>
 CSS<br>
