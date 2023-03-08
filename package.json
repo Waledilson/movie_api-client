@@ -4,6 +4,8 @@
   "description": "",
   "default": "src/index.html",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "src/index.html"
   },
@@ -16,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Waledilson/movie_api-client/issues"
   },
-  "homepage": "https://github.com/Waledilson/movie_api-client/dist/index.html",
+  "homepage": "https://waledilson.github.io/movie_api-client",
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
