@@ -4,9 +4,11 @@
   "description": "",
   "default": "src/index.html",
   "scripts": {
-    "build": "react-scripts build",
+    "build": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "dist/index.html"
+    "start": "dist/index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
