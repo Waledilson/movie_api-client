@@ -3,7 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { connect } from "react-redux";
 
-export function Navbar(props) {
+export default function Navbar(props) {
   const { user } = props;
 
   handleLogOut = (e) => {
@@ -42,4 +42,4 @@ let mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+connect(mapStateToProps)(Navbar);
