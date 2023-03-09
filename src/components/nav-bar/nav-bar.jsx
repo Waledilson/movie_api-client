@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 export default function Navbar(props) {
   const { user } = props;
 
-  handleLogOut = (e) => {
+  const handleLogOut = (e) => {
     e.preventDefault();
     localStorage.clear();
     window.open(`/`, "_self");
