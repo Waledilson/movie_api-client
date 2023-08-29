@@ -154,7 +154,7 @@ const RegistrationView = (props) => {
   );
 };
 
-mapStateToProps = (state) => {
+let mapStateToProps = (state) => {
   return {
     user: state.user,
   };

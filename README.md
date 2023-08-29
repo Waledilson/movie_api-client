@@ -1,4 +1,5 @@
-Martini Shot
+Martini Shot<br>
+<a href="https://martini-shot-react.netlify.app/">Click here to see it online</a>
 
 Martini Shot is an app designed as a repository for a few of my favorite movies. Utilizing the MERN stack, users are able to create a profile, browse a selection of movies, find infomation about those movies such as the movie's description, genre and director. Once the profile is created, the user can create a list of their own favorite movies and update their user information.
 
@@ -18,6 +19,7 @@ Railway<br>
 Javascript<br>
 HTML<br>
 CSS<br>
+Netlify<br>
 <br>
 <br>
 <img src="screenshots-for-readme/myflix-react-ss1.png">
