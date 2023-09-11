@@ -5,6 +5,7 @@
 // const MOVIE_API_URL = "https://main--teal-piroshki-fe95ae.netlify.app/";
 // const MOVIE_API_URL = "http://localhost:8080";
 // const MOVIE_API_URL = "https://chimerical-tarsier-543164.netlify.app";
-const MOVIE_API_URL = "https://marvelous-sundae-b7591f.netlify.app";
+// const MOVIE_API_URL = "https://marvelous-sundae-b7591f.netlify.app";
+const MOVIE_API_URL = "https://teal-piroshki-fe95ae.netlify.app";
 
 export { MOVIE_API_URL };
