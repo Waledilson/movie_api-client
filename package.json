@@ -39,6 +39,7 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "buffer": "^5.7.1",
+    "parcel": "^2.9.3",
     "process": "^0.11.10"
   }
 }
